@@ -1,0 +1,1 @@
+include ':testimagesize', ':testsort', ':testhanluota'
