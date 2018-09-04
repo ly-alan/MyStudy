@@ -8,6 +8,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.text.TextUtils;
 
 import java.io.File;
 import java.net.NetworkInterface;
@@ -130,6 +131,21 @@ public final class DeviceUtils {
             e.printStackTrace();
         }
         return "02:00:00:00:00:00";
+    }
+
+    /**
+     * 获取sim卡手机号
+     *
+     * @return String
+     */
+    public static String getSIMCardPhoneNumber(Context context) {
+        String SIMCardPhoneNumber = null;
+        if (null != context) {
+            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
+                    .getSystemService(Context.TELEPHONY_SERVICE);
+            SIMCardPhoneNumber = tm.getLine1Number();
+        }
+        return TextUtils.isEmpty(SIMCardPhoneNumber) ? "" : SIMCardPhoneNumber;
     }
 
     /**
