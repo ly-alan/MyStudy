@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TitleBar">
+        <item name="background">@color/white</item>
+        <item name="back_bg">@drawable/title_bar_back_white</item>
+        <item name="textColor">@color/black</item>
+        <item name="titleColor">@color/black</item>
+    </style>
+
+    <style name="TitleBar.System">
+        <item name="background">@color/colorPrimary</item>
+    </style>
+
+</resources>

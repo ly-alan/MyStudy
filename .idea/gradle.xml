@@ -8,9 +8,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/lib/commonlib" />
+            <option value="$PROJECT_DIR$/main" />
             <option value="$PROJECT_DIR$/testhanluota" />
             <option value="$PROJECT_DIR$/testimagesize" />
             <option value="$PROJECT_DIR$/testsort" />
+            <option value="$PROJECT_DIR$/tvmodule" />
+            <option value="$PROJECT_DIR$/utillibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

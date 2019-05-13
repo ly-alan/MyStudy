@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TitleBar消息按钮的id-->
+    <item name="titlebar_message_button" type="id"/>
+    <!--TitleBar返回按钮的id-->
+    <item name="titlebar_back_button" type="id"/>
+    <!--TitleBar左侧添加按钮的布局的id-->
+    <item name="titlebar_left_btns_layout" type="id"/>
+    <!--TitleBar菜单按钮的id-->
+    <item name="titlebar_menu_button" type="id"/>
+    <!--TitleBar右侧添加按钮的布局的id-->
+    <item name="titlebar_right_btns_layout" type="id"/>
+
+</resources>

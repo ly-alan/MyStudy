@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="text" format="string" />
+    <attr name="textColor" format="color" />
+    <attr name="textSize" format="dimension" />
+
+    <!-- title左右文字 -->
+    <declare-styleable name="ImageTextButton">
+        <attr name="text" />
+        <attr name="textColor" />
+        <attr name="textSize" />
+    </declare-styleable>
+
+    <!-- 导航栏 -->
+    <!--导航栏主题-->
+    <attr name="title_bar_style" format="reference" />
+    <declare-styleable name="TitleBar">
+        <!--返回键资源图-->
+        <attr name="back_bg" format="reference" />
+        <!--按钮点击效果-->
+        <attr name="button_click_bg" format="reference" />
+        <!--导航栏背景-->
+        <attr name="background" />
+        <!--导航栏标题颜色-->
+        <attr name="titleColor" />
+        <!--导航栏按钮字体颜色-->
+        <attr name="textColor" />
+    </declare-styleable>
+
+</resources>
