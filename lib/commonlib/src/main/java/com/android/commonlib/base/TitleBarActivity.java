@@ -12,7 +12,7 @@ import com.android.commonlib.view.custom.TitleBar;
 /**
  * Created by yong.liao on 2018/3/29 0029.
  */
-public abstract class TitleBarActivity extends BaseActivity {
+public class TitleBarActivity extends BaseActivity {
 
     /**
      * 包含TitleBar的根布局

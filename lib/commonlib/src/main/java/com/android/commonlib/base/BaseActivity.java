@@ -26,7 +26,8 @@ import java.io.File;
 /**
  * Created by yong.liao on 2018/3/29 0029.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
+
     /**
      * Fragment管理器
      */
@@ -121,7 +122,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         BaseApplication.getInstance().removeActivity(getTAG());
     }
 
-    public abstract String getTAG();
+    public String getTAG() {
+        return getClass().getSimpleName();
+    }
 
     public void postEventData(Object object) {
         if (null != object) {
