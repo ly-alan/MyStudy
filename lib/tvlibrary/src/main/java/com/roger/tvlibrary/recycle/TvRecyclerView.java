@@ -111,6 +111,13 @@ public class TvRecyclerView extends RecyclerView {
 
     //是否处理焦点快速丢失情况
     protected boolean onFocusLostDealWith(View itemView) {
+//        if(needRequestFocus){
+//            long currentTime = System.currentTimeMillis();
+//            if(currentTime - lastLoseFocusTime < 50){
+//                itemView.requestFocus();
+//                return true;
+//            }
+//        }
         return false;
     }
 
