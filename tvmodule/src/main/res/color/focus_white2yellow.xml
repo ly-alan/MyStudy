@@ -9,8 +9,5 @@
     <item android:color="@color/selected_background" android:state_activated="true"/>
     <item android:color="@color/selected_background" android:state_active="true"/>
     <item android:color="@color/selected_background" android:state_hovered="true"/>
-    <item android:state_middle="true" android:color="#6A5ACD" />
-    <item android:state_pressed="true" android:color="#6A5ACD" />
-    <item android:state_single="true" android:color="#FFA500" />
-    <item android:color="#ffffff" />
+    <item android:color="@color/white" />
 </selector>

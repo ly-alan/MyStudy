@@ -1,4 +1,4 @@
-package com.roger.tvmodule.main;
+package com.roger.tvmodule;
 
 import android.support.v4.app.Fragment;
 
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
  */
 public class FragmentFactory {
 
+    private static final String FRAGMENT_PATH = "com.roger.tvmodule.fragment.";
+
     /**
      * @param fragmentName fragment全路径名
      * @return
@@ -14,7 +16,7 @@ public class FragmentFactory {
     public static Fragment creatFragment(String fragmentName) {
         Fragment fragment = null;
         try {
-            Class classForName = Class.forName(fragmentName);
+            Class classForName = Class.forName(FRAGMENT_PATH + fragmentName);
             fragment = (Fragment) classForName.newInstance();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.roger.tvmodule.main;
+package com.roger.tvmodule;
 
 import com.android.commonlib.base.BaseApplication;
 

@@ -1,41 +1,41 @@
-package com.roger.tvmodule;
+package com.roger.tvmodule.fragment;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.LightingColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
-import android.text.TextWatcher;
-import android.text.method.KeyListener;
 import android.text.method.LinkMovementMethod;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.ActionMode;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HomeActivity extends Activity {
+import com.android.commonlib.base.BaseFragment;
+import com.roger.tvmodule.R;
+
+/**
+ * Create by Roger on 2019/6/4
+ */
+public class SpanStrFragment extends BaseFragment {
 
     TextView textView;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        textView = findViewById(R.id.main_text);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_home, container,false);
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        textView = getView().findViewById(R.id.main_text);
         showTextView();
     }
 
