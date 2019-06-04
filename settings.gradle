@@ -1,1 +1,1 @@
-include  ':utillibrary', ':testimagesize', ':testsort', ':testhanluota', ':tvmodule', ':main',':lib:commonlib', ':javaModule', ':lib:tvlibrary'
+include  ':utillibrary', ':testimagesize', ':testsort', ':testhanluota', ':tvmodule', ':main',':lib:commonlib', ':javaModule', ':lib:TvRecycleView', 'lib:tvtablayout'

@@ -11,6 +11,7 @@
         android:required="true" />
 
     <application
+        android:name=".main.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,23 +20,6 @@
 
 
         <activity android:name=".HomeActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".system.MainActivity"
-            android:screenOrientation="landscape">
-            <!--这几样不能加，加了不显示icon桌面图标-->
-            <!--android:banner="@drawable/app_icon_your_company"-->
-            <!--android:icon="@drawable/app_icon_your_company"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:logo="@drawable/app_icon_your_company"-->
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -44,9 +28,21 @@
 
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".system.DetailsActivity" />
-        <activity android:name=".system.PlaybackActivity" />
-        <activity android:name=".system.BrowseErrorActivity" />
+
+        <activity
+            android:name=".main.MainActivity"
+            android:banner="@drawable/app_icon_your_company"
+            android:icon="@drawable/app_icon_your_company"
+            android:label="@string/app_name"
+            android:logo="@drawable/app_icon_your_company">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
