@@ -1,4 +1,4 @@
-package com.roger.tvlibrary.tablayout;
+package com.library.roger.tvtablayout;
 
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;

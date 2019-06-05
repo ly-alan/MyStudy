@@ -1,4 +1,4 @@
-package com.roger.tvlibrary.tablayout;
+package com.library.roger.tvtablayout;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

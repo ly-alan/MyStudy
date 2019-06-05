@@ -1,4 +1,4 @@
-package com.roger.tvlibrary.tablayout;
+package com.library.roger.tvtablayout;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -254,7 +254,7 @@ public class TvTabLayout extends HorizontalScrollView {
     private final ArrayList<OnTabSelectedListener> mSelectedListeners = new ArrayList<>();
     private OnTabSelectedListener mCurrentVpSelectedListener;
 
-    private com.roger.tvlibrary.tablayout.ValueAnimatorCompat mScrollAnimator;
+    private ValueAnimatorCompat mScrollAnimator;
 
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
@@ -481,7 +481,7 @@ public class TvTabLayout extends HorizontalScrollView {
         }
     }
 
-    private void addTabFromItemView(@NonNull com.roger.tvlibrary.tablayout.TabItem item) {
+    private void addTabFromItemView(@NonNull TabItem item) {
         final Tab tab = newTab();
         if (item.mText != null) {
             tab.setText(item.mText);
@@ -1040,8 +1040,8 @@ public class TvTabLayout extends HorizontalScrollView {
     }
 
     private void addViewInternal(final View child) {
-        if (child instanceof com.roger.tvlibrary.tablayout.TabItem) {
-            addTabFromItemView((com.roger.tvlibrary.tablayout.TabItem) child);
+        if (child instanceof TabItem) {
+            addTabFromItemView((TabItem) child);
         } else {
             throw new IllegalArgumentException("Only TabItem instances can be added to TabLayout");
         }
@@ -1173,12 +1173,12 @@ public class TvTabLayout extends HorizontalScrollView {
             final int targetScrollX = calculateScrollXForTab(newPosition, 0);
             if (startScrollX != targetScrollX) {
                 if (mScrollAnimator == null) {
-                    mScrollAnimator = com.roger.tvlibrary.tablayout.ViewUtils.createAnimator();
-                    mScrollAnimator.setInterpolator(com.roger.tvlibrary.tablayout.AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+                    mScrollAnimator =  ViewUtils.createAnimator();
+                    mScrollAnimator.setInterpolator( AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
                     mScrollAnimator.setDuration(ANIMATION_DURATION);
-                    mScrollAnimator.setUpdateListener(new com.roger.tvlibrary.tablayout.ValueAnimatorCompat.AnimatorUpdateListener() {
+                    mScrollAnimator.setUpdateListener(new  ValueAnimatorCompat.AnimatorUpdateListener() {
                         @Override
-                        public void onAnimationUpdate(com.roger.tvlibrary.tablayout.ValueAnimatorCompat animator) {
+                        public void onAnimationUpdate( ValueAnimatorCompat animator) {
                             scrollTo(animator.getAnimatedIntValue(), 0);
                         }
                     });
@@ -1965,7 +1965,7 @@ public class TvTabLayout extends HorizontalScrollView {
         private int mIndicatorBackgroundTop;
         private int mIndicatorBackgroundBottom;
 
-        private com.roger.tvlibrary.tablayout.ValueAnimatorCompat mIndicatorAnimator;
+        private  ValueAnimatorCompat mIndicatorAnimator;
 
         SlidingTabStrip(Context context) {
             super(context);
@@ -2238,22 +2238,22 @@ public class TvTabLayout extends HorizontalScrollView {
             }
 
             if (startLeft != targetLeft || startRight != targetRight) {
-                com.roger.tvlibrary.tablayout.ValueAnimatorCompat animator = mIndicatorAnimator = com.roger.tvlibrary.tablayout.ViewUtils.createAnimator();
-                animator.setInterpolator(com.roger.tvlibrary.tablayout.AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+                 ValueAnimatorCompat animator = mIndicatorAnimator =  ViewUtils.createAnimator();
+                animator.setInterpolator( AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
                 animator.setDuration(duration);
                 animator.setFloatValues(0, 1);
-                animator.setUpdateListener(new com.roger.tvlibrary.tablayout.ValueAnimatorCompat.AnimatorUpdateListener() {
+                animator.setUpdateListener(new  ValueAnimatorCompat.AnimatorUpdateListener() {
                     @Override
-                    public void onAnimationUpdate(com.roger.tvlibrary.tablayout.ValueAnimatorCompat animator) {
+                    public void onAnimationUpdate( ValueAnimatorCompat animator) {
                         final float fraction = animator.getAnimatedFraction();
                         setIndicatorPosition(
-                                com.roger.tvlibrary.tablayout.AnimationUtils.lerp(startLeft, targetLeft, fraction),
-                                com.roger.tvlibrary.tablayout.AnimationUtils.lerp(startRight, targetRight, fraction));
+                                 AnimationUtils.lerp(startLeft, targetLeft, fraction),
+                                 AnimationUtils.lerp(startRight, targetRight, fraction));
                     }
                 });
-                animator.setListener(new com.roger.tvlibrary.tablayout.ValueAnimatorCompat.AnimatorListenerAdapter() {
+                animator.setListener(new  ValueAnimatorCompat.AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(com.roger.tvlibrary.tablayout.ValueAnimatorCompat animator) {
+                    public void onAnimationEnd( ValueAnimatorCompat animator) {
                         mSelectedPosition = position;
                         mSelectionOffset = 0f;
                     }

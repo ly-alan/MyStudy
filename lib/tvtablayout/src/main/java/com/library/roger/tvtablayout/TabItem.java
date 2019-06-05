@@ -1,4 +1,4 @@
-package com.roger.tvlibrary.tablayout;
+package com.library.roger.tvtablayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
