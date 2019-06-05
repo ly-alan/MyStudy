@@ -2,12 +2,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--<item android:color="@color/default_background"/>-->
     <item android:color="@color/selected_background"  android:state_focused="true"/>
-    <item android:color="@color/selected_background"  android:state_accelerated="true"/>
-    <item android:color="@color/fastlane_background"  android:state_checked="true"/>
-    <item android:color="@color/background_gradient_start"  android:state_selected="true"/>
-    <item android:color="@color/selected_background" android:state_window_focused="true"/>
-    <item android:color="@color/selected_background" android:state_activated="true"/>
-    <item android:color="@color/selected_background" android:state_active="true"/>
-    <item android:color="@color/selected_background" android:state_hovered="true"/>
-    <item android:color="@color/white" />
+    <!--<item android:color="@color/selected_background"  android:state_accelerated="true"/>-->
+    <!--<item android:color="@color/fastlane_background"  android:state_checked="true"/>-->
+    <item android:color="@color/selected_background"  android:state_selected="true"/>
+    <!--<item android:color="@color/selected_background" android:state_window_focused="true"/>-->
+    <!--<item android:color="@color/selected_background" android:state_activated="true"/>-->
+    <!--<item android:color="@color/selected_background" android:state_active="true"/>-->
+    <!--<item android:color="@color/selected_background" android:state_hovered="true"/>-->
+    <item android:color="@color/background_gradient_start" />
 </selector>
