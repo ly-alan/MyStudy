@@ -1,23 +1,18 @@
 package com.roger.tvmodule.main;
 
 
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.commonlib.base.BaseFragment;
 import com.roger.tvmodule.R;
-
-import java.util.List;
 
 public class MainFragment extends BaseFragment {
 

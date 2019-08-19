@@ -1,8 +1,9 @@
-package com.roger.main;
+package com.roger.main.activity;
 
 import android.os.Bundle;
 
 import com.android.commonlib.base.BaseActivity;
+import com.roger.main.R;
 
 public class MainActivity extends BaseActivity {
 

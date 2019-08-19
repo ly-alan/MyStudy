@@ -1,3 +1,3 @@
 <resources>
-    <string name="app_name">MainModule</string>
+    <string name="app_name">MainModule&lt;&amp;&gt;</string>
 </resources>
