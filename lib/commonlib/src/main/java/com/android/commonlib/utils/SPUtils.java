@@ -38,6 +38,19 @@ public class SPUtils {
 
     }
 
+    public static void putString(String fileName,String key, String value) {
+        SharedPreferences sp = BaseApplication.getInstance().getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        //添加保存数据
+        sp.edit().putString(key, value).apply();
+
+    }
+
+    public static String getString(String fileName,String key, String defValue) {
+        SharedPreferences sp = BaseApplication.getInstance().getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        return sp.getString(key, defValue);
+
+    }
+
     public static void putInt(String key, int value) {
         SharedPreferences sp = BaseApplication.getInstance().getSharedPreferences(Constants.SP_NAME, Context.MODE_PRIVATE);
         //添加保存数据

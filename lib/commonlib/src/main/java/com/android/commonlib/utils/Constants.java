@@ -1,6 +1,6 @@
 package com.android.commonlib.utils;
 
-import android.os.Environment;
+import com.android.commonlib.base.BaseApplication;
 
 import java.io.File;
 
@@ -17,14 +17,11 @@ public class Constants {
     //保存应用信息的文件夹
     public static final String FOLDER = "mySpeed";
     // 安装文件下载路径（升级用）
-    public static final String APK_CACHE_PATH = Environment.getExternalStorageDirectory().getPath()
-            + File.separator + FOLDER + File.separator + "apk" + File.separator;
+    public static final String APK_CACHE_PATH = BaseApplication.getInstance().getFilesDir().getAbsolutePath() + File.separator;
     // 日志文件保存路径
-    public static final String LOG_CACHE_PATH = Environment.getExternalStorageDirectory().getPath()
-            + File.separator + FOLDER + File.separator + "log" + File.separator;
+    public static final String LOG_CACHE_PATH = BaseApplication.getInstance().getCacheDir().getAbsolutePath() + File.separator;
     //数据缓存文件保存路径
-    public static final String DATA_CACHE_PATH = Environment.getExternalStorageDirectory().getPath()
-            + File.separator + FOLDER + File.separator + "data" + File.separator;
+    public static final String DATA_CACHE_PATH = BaseApplication.getInstance().getCacheDir().getAbsolutePath() + FOLDER + File.separator;
 
     //SharePreference文件
     public static final String SP_NAME = "my_preference";

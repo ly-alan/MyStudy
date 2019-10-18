@@ -20,7 +20,8 @@ public class MainFragment extends BaseFragment {
     ListView mListView;
     String[] mDatas = {
             "SubString:" + SubStrFragment.class.getSimpleName(),
-            "FileFragment:" + FileFragment.class.getSimpleName()
+            "FileFragment:" + FileFragment.class.getSimpleName(),
+            "SharePreference:" + SharePreferenceFragment.class.getSimpleName()
     };
 
     @Nullable
