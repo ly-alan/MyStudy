@@ -19,7 +19,8 @@ public class MainFragment extends BaseFragment {
 
     ListView mListView;
     String[] mDatas = {
-            "SubString:" + SubStrFragment.class.getSimpleName()
+            "SubString:" + SubStrFragment.class.getSimpleName(),
+            "FileFragment:" + FileFragment.class.getSimpleName()
     };
 
     @Nullable
