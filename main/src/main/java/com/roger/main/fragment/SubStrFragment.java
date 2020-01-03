@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * 得到最长子序列长度，并输出所有最长子序列
  * Create by Roger on 2019/8/19
  * 字符串字串
  */

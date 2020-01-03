@@ -1,6 +1,9 @@
 package com.roger.tvmodule.fragment;
 
+import android.graphics.Color;
 import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -71,7 +74,7 @@ public class SpanStrFragment extends BaseFragment {
                 super.updateDrawState(ds);
                 //设置超链接文本颜色
                 ds.setColorFilter(new LightingColorFilter(0xFFFF00FF, 0x0000FF00));
-//                ds.setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.DARKEN));
+                ds.setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.DARKEN));
                 ds.setUnderlineText(true);
                 ds.clearShadowLayer();
             }
