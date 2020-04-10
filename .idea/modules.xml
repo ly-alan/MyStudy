@@ -3,14 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" filepath="$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c_annotations/c_annotations.iml" filepath="$PROJECT_DIR$/c_annotations/c_annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c_compiler/c_compiler.iml" filepath="$PROJECT_DIR$/c_compiler/c_compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/lib/commonlib/commonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaModule/javaModule.iml" filepath="$PROJECT_DIR$/javaModule/javaModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/testhanluota/testhanluota.iml" filepath="$PROJECT_DIR$/testhanluota/testhanluota.iml" />
       <module fileurl="file://$PROJECT_DIR$/testimagesize/testimagesize.iml" filepath="$PROJECT_DIR$/testimagesize/testimagesize.iml" />
       <module fileurl="file://$PROJECT_DIR$/testsort/testsort.iml" filepath="$PROJECT_DIR$/testsort/testsort.iml" />
       <module fileurl="file://$PROJECT_DIR$/tvmodule/tvmodule.iml" filepath="$PROJECT_DIR$/tvmodule/tvmodule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/utillibrary/utillibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" filepath="$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workmanager/workmanager.iml" filepath="$PROJECT_DIR$/workmanager/workmanager.iml" />
     </modules>
   </component>
 </project>
