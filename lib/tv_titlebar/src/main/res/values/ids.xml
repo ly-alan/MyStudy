@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <item name="lib_tv_titlebar_logo" type="id">lib_tv_titlebar_logo</item>-->
+<!--    <item name="lib_tv_titlebar_icon" type="id">lib_tv_titlebar_icon</item>-->
+<!--    <item name="lib_tv_titlebar_title" type="id">lib_tv_titlebar_title</item>-->
+<!--    <item name="lib_tv_titlebar_subtitle" type="id">lib_tv_titlebar_subtitle</item>-->
+<!--    <item name="lib_tv_titlebar_menu" type="id">lib_tv_titlebar_menu</item>-->
+<!--    <item name="lib_tv_titlebar_explanation" type="id">lib_tv_titlebar_explanation</item>-->
+<!--    <item name="lib_tv_titlebar_extend" type="id">lib_tv_titlebar_extend</item>-->
+    <item name="lib_tv_titlebar_logo" type="id"/>
+    <item name="lib_tv_titlebar_icon" type="id"/>
+    <item name="lib_tv_titlebar_title" type="id"/>
+    <item name="lib_tv_titlebar_subtitle" type="id"/>
+    <item name="lib_tv_titlebar_menu" type="id"/>
+    <item name="lib_tv_titlebar_explanation" type="id"/>
+    <item name="lib_tv_titlebar_extend" type="id"/>
+</resources>

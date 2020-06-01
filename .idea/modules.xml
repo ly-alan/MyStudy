@@ -2,21 +2,22 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" filepath="$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/c_annotations/c_annotations.iml" filepath="$PROJECT_DIR$/c_annotations/c_annotations.iml" />
-      <module fileurl="file://$PROJECT_DIR$/c_compiler/c_compiler.iml" filepath="$PROJECT_DIR$/c_compiler/c_compiler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/lib/commonlib/commonlib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/javaModule/javaModule.iml" filepath="$PROJECT_DIR$/javaModule/javaModule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testhanluota/testhanluota.iml" filepath="$PROJECT_DIR$/testhanluota/testhanluota.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testimagesize/testimagesize.iml" filepath="$PROJECT_DIR$/testimagesize/testimagesize.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testsort/testsort.iml" filepath="$PROJECT_DIR$/testsort/testsort.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tvmodule/tvmodule.iml" filepath="$PROJECT_DIR$/tvmodule/tvmodule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" filepath="$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/workmanager/workmanager.iml" filepath="$PROJECT_DIR$/workmanager/workmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" group="MyStudy" />
+      <module fileurl="file://$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" filepath="$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" group="MyStudy/lib/TvRecycleView" />
+      <module fileurl="file://$PROJECT_DIR$/c_annotations/c_annotations.iml" filepath="$PROJECT_DIR$/c_annotations/c_annotations.iml" group="MyStudy/c_annotations" />
+      <module fileurl="file://$PROJECT_DIR$/c_compiler/c_compiler.iml" filepath="$PROJECT_DIR$/c_compiler/c_compiler.iml" group="MyStudy/c_compiler" />
+      <module fileurl="file://$PROJECT_DIR$/lib/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/lib/commonlib/commonlib.iml" group="MyStudy/lib/commonlib" />
+      <module fileurl="file://$PROJECT_DIR$/javaModule/javaModule.iml" filepath="$PROJECT_DIR$/javaModule/javaModule.iml" group="MyStudy/javaModule" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" group="MyStudy/lib" />
+      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" group="MyStudy/main" />
+      <module fileurl="file://$PROJECT_DIR$/testhanluota/testhanluota.iml" filepath="$PROJECT_DIR$/testhanluota/testhanluota.iml" group="MyStudy/testhanluota" />
+      <module fileurl="file://$PROJECT_DIR$/testimagesize/testimagesize.iml" filepath="$PROJECT_DIR$/testimagesize/testimagesize.iml" group="MyStudy/testimagesize" />
+      <module fileurl="file://$PROJECT_DIR$/testsort/testsort.iml" filepath="$PROJECT_DIR$/testsort/testsort.iml" group="MyStudy/testsort" />
+      <module fileurl="file://$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" filepath="$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" group="MyStudy/lib/tv_titlebar" />
+      <module fileurl="file://$PROJECT_DIR$/tvmodule/tvmodule.iml" filepath="$PROJECT_DIR$/tvmodule/tvmodule.iml" group="MyStudy/tvmodule" />
+      <module fileurl="file://$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" filepath="$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" group="MyStudy/lib/tvtablayout" />
+      <module fileurl="file://$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" group="MyStudy/lib/utillibrary" />
+      <module fileurl="file://$PROJECT_DIR$/workmanager/workmanager.iml" filepath="$PROJECT_DIR$/workmanager/workmanager.iml" group="MyStudy/workmanager" />
     </modules>
   </component>
 </project>

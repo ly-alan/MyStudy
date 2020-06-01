@@ -19,7 +19,7 @@ public class MainFragment extends BaseFragment {
     ListView mListView;
     String[] mDatas = {
             "测试SpanString:SpanStrFragment",
-            "测试:SpanStrFragment"
+            "测试oom:OOMFragment"
     };
 
     @Nullable
