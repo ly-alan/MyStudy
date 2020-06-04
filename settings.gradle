@@ -1,2 +1,2 @@
-include  ':lib:utillibrary', ':testimagesize', ':testsort', ':testhanluota', ':tvmodule', ':main',':lib:commonlib', ':javaModule', ':lib:TvRecycleView', ':c_annotations', ':c_compiler', ':workmanager', 'lib:tvtablayout'
+include  ':lib:utillibrary', ':testimagesize', ':testsort', ':testhanluota', ':tvmodule', ':main',':lib:commonlib', ':javaModule', ':lib:TvRecycleView', ':c_annotations', ':c_compiler', 'lib:tvtablayout'
 include ':lib:tv_titlebar'

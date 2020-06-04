@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-import sun.rmi.runtime.Log;
 
 public class GcRootThread {
     private int _10MB = 10 * 1024 * 1024;
