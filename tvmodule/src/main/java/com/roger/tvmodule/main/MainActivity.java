@@ -16,11 +16,14 @@ public class MainActivity extends BaseActivity {
     @TestBindView(R.id.main_browse_fragment)
     View view;
 
+    @RandomInt
+    int number;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TestUtils.bind(this);
-        Log.d("liao", "view " + view);
+        Log.d("liao", "view : " + view + " : " + number);
     }
 }

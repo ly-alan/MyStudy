@@ -1,17 +1,25 @@
 package com.roger.c_compiler;
 
+import com.google.auto.common.SuperficialValidation;
 import com.google.auto.service.AutoService;
 import com.roger.c_annotations.RandomInt;
 import com.roger.c_annotations.TestBindView;
 import com.roger.c_annotations.Test_Class_Type;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
 
 import java.io.Writer;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -25,10 +33,14 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Create by Roger on 2020/1/3
@@ -76,10 +88,16 @@ public class RandomProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         //对注解的处理
-//        processRandomInt();
+        processRandomInt();
         processBindView(roundEnvironment);
-        System.out.println("process -> " + roundEnvironment.toString());
-        //好像这个方法必须返回true才会生产文件
+        note("process -> " + roundEnvironment.toString());
+
+
+        /****** butterknife的方法 *****/
+//        Map<TypeElement, BindingSet> bindingMap = findAndParseTargets(roundEnvironment);
+
+
+        //好像这个方法必须返回true才会生产文件)
         return true;
     }
 
@@ -164,6 +182,10 @@ public class RandomProcessor extends AbstractProcessor {
                 String info = String.format(Locale.getDefault(),
                         "\t\tactivity.%s = activity.findViewById(%d);\n", bindViewFiledName, id);
                 builder.append(info);
+
+//                String info1 = String.format(Locale.getDefault(),
+//                        "\t\tactivity.%s = %d;\n", "number", new Random().nextInt(65535));
+//                builder.append(info1);
             }
 
             builder.append("\t}\n");
@@ -177,4 +199,140 @@ public class RandomProcessor extends AbstractProcessor {
 
         }
     }
+
+
+//    private Map<TypeElement, BindingSet> findAndParseTargets(RoundEnvironment env) {
+//        Map<TypeElement, BindingSet.Builder> builderMap = new LinkedHashMap<>();
+//        Set<TypeElement> erasedTargetNames = new LinkedHashSet<>();
+//
+//        // Process each @BindArray element.
+//        for (Element element : env.getElementsAnnotatedWith(TestBindView.class)) {
+//            if (!SuperficialValidation.validateElement(element)) continue;
+//            try {
+//                parseBindViews(element, builderMap, erasedTargetNames);
+//            } catch (Exception e) {
+//                //
+//                note("parseTestBindView error");
+//            }
+//        }
+//
+//        Map<TypeElement, ClasspathBindingSet> classpathBindings =
+//                findAllSupertypeBindings(builderMap, erasedTargetNames);
+//
+//        // Associate superclass binders with their subclass binders. This is a queue-based tree walk
+//        // which starts at the roots (superclasses) and walks to the leafs (subclasses).
+//        Deque<Map.Entry<TypeElement, BindingSet.Builder>> entries = new ArrayDeque<>(builderMap.entrySet());
+//        Map<TypeElement, BindingSet> bindingMap = new LinkedHashMap<>();
+//        while (!entries.isEmpty()) {
+//            Map.Entry<TypeElement, BindingSet.Builder> entry = entries.removeFirst();
+//
+//            TypeElement type = entry.getKey();
+//            BindingSet.Builder builder = entry.getValue();
+//
+//            TypeElement parentType = findParentType(type, erasedTargetNames, classpathBindings.keySet());
+//            if (parentType == null) {
+//                bindingMap.put(type, builder.build());
+//            } else {
+//                BindingInformationProvider parentBinding = bindingMap.get(parentType);
+//                if (parentBinding == null) {
+//                    parentBinding = classpathBindings.get(parentType);
+//                }
+//                if (parentBinding != null) {
+//                    builder.setParent(parentBinding);
+//                    bindingMap.put(type, builder.build());
+//                } else {
+//                    // Has a superclass binding but we haven't built it yet. Re-enqueue for later.
+//                    entries.addLast(entry);
+//                }
+//            }
+//        }
+//
+//        return builderMap;
+//    }
+//
+//
+//    private void parseBindViews(Element element, Map<TypeElement, BindingSet.Builder> builderMap,
+//                                Set<TypeElement> erasedTargetNames) {
+//        TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();
+//
+//        // Start by verifying common generated code restrictions.
+//        boolean hasError = isInaccessibleViaGeneratedCode(BindViews.class, "fields", element)
+//                || isBindingInWrongPackage(BindViews.class, element);
+//
+//        // Verify that the type is a List or an array.
+//        TypeMirror elementType = element.asType();
+//        String erasedType = doubleErasure(elementType);
+//        TypeMirror viewType = null;
+//        FieldCollectionViewBinding.Kind kind = null;
+//        if (elementType.getKind() == TypeKind.ARRAY) {
+//            ArrayType arrayType = (ArrayType) elementType;
+//            viewType = arrayType.getComponentType();
+//            kind = FieldCollectionViewBinding.Kind.ARRAY;
+//        } else if (LIST_TYPE.equals(erasedType)) {
+//            DeclaredType declaredType = (DeclaredType) elementType;
+//            List<? extends TypeMirror> typeArguments = declaredType.getTypeArguments();
+//            if (typeArguments.size() != 1) {
+//                error(element, "@%s List must have a generic component. (%s.%s)",
+//                        BindViews.class.getSimpleName(), enclosingElement.getQualifiedName(),
+//                        element.getSimpleName());
+//                hasError = true;
+//            } else {
+//                viewType = typeArguments.get(0);
+//            }
+//            kind = FieldCollectionViewBinding.Kind.LIST;
+//        } else {
+//            error(element, "@%s must be a List or array. (%s.%s)", BindViews.class.getSimpleName(),
+//                    enclosingElement.getQualifiedName(), element.getSimpleName());
+//            hasError = true;
+//        }
+//        if (viewType != null && viewType.getKind() == TypeKind.TYPEVAR) {
+//            TypeVariable typeVariable = (TypeVariable) viewType;
+//            viewType = typeVariable.getUpperBound();
+//        }
+//
+//        // Verify that the target type extends from View.
+//        if (viewType != null && !isSubtypeOfType(viewType, VIEW_TYPE) && !isInterface(viewType)) {
+//            if (viewType.getKind() == TypeKind.ERROR) {
+//                note(element, "@%s List or array with unresolved type (%s) "
+//                                + "must elsewhere be generated as a View or interface. (%s.%s)",
+//                        BindViews.class.getSimpleName(), viewType, enclosingElement.getQualifiedName(),
+//                        element.getSimpleName());
+//            } else {
+//                error(element, "@%s List or array type must extend from View or be an interface. (%s.%s)",
+//                        BindViews.class.getSimpleName(), enclosingElement.getQualifiedName(),
+//                        element.getSimpleName());
+//                hasError = true;
+//            }
+//        }
+//
+//        // Assemble information on the field.
+//        String name = element.getSimpleName().toString();
+//        int[] ids = element.getAnnotation(BindViews.class).value();
+//        if (ids.length == 0) {
+//            error(element, "@%s must specify at least one ID. (%s.%s)", BindViews.class.getSimpleName(),
+//                    enclosingElement.getQualifiedName(), element.getSimpleName());
+//            hasError = true;
+//        }
+//
+//        Integer duplicateId = findDuplicate(ids);
+//        if (duplicateId != null) {
+//            error(element, "@%s annotation contains duplicate ID %d. (%s.%s)",
+//                    BindViews.class.getSimpleName(), duplicateId, enclosingElement.getQualifiedName(),
+//                    element.getSimpleName());
+//            hasError = true;
+//        }
+//
+//        if (hasError) {
+//            return;
+//        }
+//        TypeName type = TypeName.get(requireNonNull(viewType));
+//        boolean required = isFieldRequired(element);
+//
+//        BindingSet.Builder builder = getOrCreateBindingBuilder(builderMap, enclosingElement);
+//        builder.addFieldCollection(new FieldCollectionViewBinding(name, type, requireNonNull(kind),
+//                new ArrayList<>(elementToIds(element, BindViews.class, ids).values()), required));
+//
+//        erasedTargetNames.add(enclosingElement);
+//    }
+
 }

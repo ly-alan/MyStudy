@@ -16,7 +16,6 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.reactivestreams.Subscriber
 import java.io.*
 import java.util.*
 
@@ -72,21 +71,21 @@ public class OOMFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.activity_home, container, false)
+        return inflater.inflate(R.layout.fragment_oom, container, false)
     }
 
     override fun initView() {
         super.initView()
         dashboard = getView()?.findViewById<View>(R.id.tv_dashboard) as TextView
         etDigtal = getView()?.findViewById<View>(R.id.et_digtal) as EditText
-        getView()?.findViewById<View>(R.id.bt1).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt2).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt3).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt4).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt5).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt6).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt7).setOnClickListener(this)
-        getView()?.findViewById<View>(R.id.bt8).setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt1)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt2)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt3)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt4)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt5)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt6)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt7)?.setOnClickListener(this)
+        getView()?.findViewById<View>(R.id.bt8)?.setOnClickListener(this)
     }
 
 
