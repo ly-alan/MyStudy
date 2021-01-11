@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" group="MyStudy/main" />
       <module fileurl="file://$PROJECT_DIR$/testhanluota/testhanluota.iml" filepath="$PROJECT_DIR$/testhanluota/testhanluota.iml" group="MyStudy/testhanluota" />
       <module fileurl="file://$PROJECT_DIR$/testimagesize/testimagesize.iml" filepath="$PROJECT_DIR$/testimagesize/testimagesize.iml" group="MyStudy/testimagesize" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testjetpack/testjetpack.iml" filepath="$PROJECT_DIR$/.idea/modules/testjetpack/testjetpack.iml" group="MyStudy/testjetpack" />
       <module fileurl="file://$PROJECT_DIR$/testsort/testsort.iml" filepath="$PROJECT_DIR$/testsort/testsort.iml" group="MyStudy/testsort" />
       <module fileurl="file://$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" filepath="$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" group="MyStudy/lib/tv_titlebar" />
       <module fileurl="file://$PROJECT_DIR$/tvmodule/tvmodule.iml" filepath="$PROJECT_DIR$/tvmodule/tvmodule.iml" group="MyStudy/tvmodule" />
