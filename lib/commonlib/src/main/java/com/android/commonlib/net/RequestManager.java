@@ -1,6 +1,6 @@
 package com.android.commonlib.net;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.android.commonlib.net.dns.HttpDNS;
 import com.android.commonlib.net.download.FileDownLoadObserver;

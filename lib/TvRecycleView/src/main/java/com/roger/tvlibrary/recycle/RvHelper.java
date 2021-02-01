@@ -1,11 +1,14 @@
 package com.roger.tvlibrary.recycle;
 
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
+
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by roger on 2016/11/28.
@@ -34,6 +37,7 @@ class RvHelper {
 //        return 0;
 //    }
 
+    @SuppressLint("WrongConstant")
     public static boolean isVertical(LinearLayoutManager lm) {
         return lm.getOrientation() == OrientationHelper.VERTICAL;
     }

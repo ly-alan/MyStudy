@@ -2,11 +2,13 @@ package com.android.commonlib.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Px;
+
 import android.text.TextUtils;
 import android.widget.ImageView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Px;
 
 import com.android.commonlib.R;
 import com.android.commonlib.base.BaseApplication;

@@ -11,8 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.android.commonlib.base.BaseFragment;
 import com.roger.tvmodule.R;
@@ -257,6 +259,7 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void createFile_10(String fileName) {
         //sd卡上共享目录Download，DCI等需要使用MediaStore的方式
         ContentResolver resolver = getContext().getApplicationContext().getContentResolver();

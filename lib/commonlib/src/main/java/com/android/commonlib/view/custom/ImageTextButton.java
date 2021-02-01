@@ -6,12 +6,14 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.ColorInt;
-import android.support.annotation.StringRes;
-import android.support.v7.widget.AppCompatImageButton;
+
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.android.commonlib.R;
 import com.android.commonlib.utils.ResUtils;

@@ -2,10 +2,12 @@ package com.roger.tvlibrary.recycle;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * {@link GridLayoutManager} extension which introduces workaround for focus finding bug when
