@@ -47,11 +47,14 @@ public class MainFragment extends BaseFragment {
     }
 
     private void titleStyle1(){
-//        tvTitleBar.setTouchscreenBlocksFocus(true);
-//        tvTitleBar.setNavigationIcon(R.mipmap.ic_launcher);
-        tvTitleBar.setLogo(R.mipmap.ic_launcher);
-//        tvTitleBar.setTitle("title");
+        tvTitleBar.setSubLogo(R.mipmap.ic_launcher);
+        tvTitleBar.setTitle("title > SubTitle");
         tvTitleBar.setSubtitle("122");
+        tvTitleBar.setMenuText("CN");
+        tvTitleBar.setSubMenuText("16:05");
+        tvTitleBar.setLeftLayoutPadding(200,30,0,0);
+        tvTitleBar.showLeftTitleDivider(getResources().getDrawable(R.mipmap.home_line));
+//        tvTitleBar.showRightTitleDivider(getResources().getDrawable(R.mipmap.home_line));
     }
 
     @Override

@@ -14,8 +14,16 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        debugConfig {
+        }
+        releaseConfig {
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -37,6 +45,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
 
     api project(path: ':c_annotations')
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     annotationProcessor project(':c_compiler')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

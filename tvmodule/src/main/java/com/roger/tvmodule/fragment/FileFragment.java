@@ -1,6 +1,7 @@
 package com.roger.tvmodule.fragment;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -39,6 +40,7 @@ import java.net.URI;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.os.Environment.DIRECTORY_DCIM;
@@ -97,6 +99,8 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
         return true;
     }
 
+    private String test_file_name = "new_test_file.txt";
+
     public void onClick(View view) {
         File file = Environment.getExternalStorageDirectory();
         String path = "";
@@ -131,7 +135,7 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
                     createFile(path + File.separator + "atest.txt");
 
                     //沙盒目录存储
-                    createFile_10("new_text.txt");
+                    createFile_10(test_file_name);
                 }
                 break;
             case R.id.btn_deleteFile:
@@ -152,6 +156,14 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
                     file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                     path = file.getPath();
                     deleteFile(path + File.separator + "_HOT_211_uat.apk");
+                } else {
+                    //在使用ContentResolver 创建文件后，若在sd卡中手动删除该文件，再调用query查询该文件，能得到文件的Uri信息
+                    //但是读取文件内容时，会抛出FileNoFound的异常；且此时使用insert()创建同名文件，会无法创建成功，insert()返回uri是null
+                    //在这种情况下，可以手动调用此delete方法，之后query查询不到uri,且可以成功创建同名文件文件
+                    int result = getContext().getApplicationContext().getContentResolver().delete(MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                            MediaStore.Downloads.DISPLAY_NAME + " = ?",
+                            new String[]{test_file_name});
+                    Log.d("liao", "delete = " + result);
                 }
                 break;
             case R.id.btn_writeFile:
@@ -173,7 +185,7 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
                     copy(path + File.separator + "RED_HOT_211beta10_uat.apk", file1.getPath() + File.separator + "atest.txt");
                     copy(path + File.separator + "RED_HOT_211beta10_uat.apk", file2.getPath() + File.separator + "atest.txt");
                 } else {
-                    readFile_10("new_text.txt");
+                    readFile_10(test_file_name);
                 }
                 break;
         }
@@ -265,9 +277,9 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
         ContentResolver resolver = getContext().getApplicationContext().getContentResolver();
         ContentValues values = new ContentValues();
         //设置文件名称
-        values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+        values.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
 //                   //设置文件类型
-        values.put(MediaStore.MediaColumns.MIME_TYPE, "text/plain");
+        values.put(MediaStore.Downloads.MIME_TYPE, "text/plain");
 //                    values.put(MediaStore.Downloads.MIME_TYPE, "*/*");
         //注意MediaStore.Downloads.RELATIVE_PATH需要targetVersion=29,
         //故该方法只可在Android10的手机上执行。
@@ -277,7 +289,9 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
         //音频文件，存储在 Alarms/、Audiobooks/、Music/、Notifications/、Podcasts/ 和 Ringtones/ 目录中，以及位于 Music/ 或 Movies/ 目录中的音频播放列表中。系统将这些文件添加到 MediaStore.Audio 表格中。
         //下载的文件，存储在 Download/ 目录中。在搭载 Android 10（API 级别 29）及更高版本的设备上，这些文件存储在 MediaStore.Downloads 表格中。此表格在 Android 9（API 级别 28）及更低版本中不可用。
 //                    values.put(MediaStore.Downloads.RELATIVE_PATH, DIRECTORY_DOWNLOADS + File.separator + "myDir");
-        values.put(MediaStore.MediaColumns.RELATIVE_PATH, DIRECTORY_DOWNLOADS);
+        values.put(MediaStore.Downloads.RELATIVE_PATH, DIRECTORY_DOWNLOADS + File.separator + getContext().getPackageName());
+        //经测试，在android10设备上插入文件，若该文件已经存在，则会生成文件后面加上编号；如test_file(1).txt；和pc端新建文件相同
+        //由于只有一个设备，不知道是设备原因，还是所有设备都是如此，新建文件时需判断文件是否存在
         Uri insertUri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
         if (insertUri != null) {
             //若生成了uri，则表示该文件添加成功
@@ -334,11 +348,22 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void readFile_10(String fileName) {
         ContentResolver resolver = getContext().getContentResolver();
+//        Cursor cursor = resolver.query(MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+//                new String[]{MediaStore.Downloads._ID, MediaStore.Downloads.MIME_TYPE, MediaStore.Downloads.DISPLAY_NAME, MediaStore.Downloads.RELATIVE_PATH},
+//                MediaStore.Downloads.DISPLAY_NAME + " = ?",
+//                new String[]{fileName},
+//                null);
+//        Cursor cursor = resolver.query(MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+//                new String[]{MediaStore.Downloads._ID, MediaStore.Downloads.MIME_TYPE, MediaStore.Downloads.DISPLAY_NAME, MediaStore.Downloads.RELATIVE_PATH},
+//                MediaStore.Downloads.RELATIVE_PATH + " = ?",
+//                new String[]{DIRECTORY_DOWNLOADS},
+//                null);
         Cursor cursor = resolver.query(MediaStore.Downloads.EXTERNAL_CONTENT_URI,
-                new String[]{MediaStore.Downloads._ID, MediaStore.Downloads.MIME_TYPE, MediaStore.Downloads.DISPLAY_NAME, MediaStore.Downloads.RELATIVE_PATH},
-                MediaStore.Downloads.DISPLAY_NAME + " = '" + fileName + "'",
+                null,
+                null,
                 null,
                 null);
 
@@ -349,7 +374,8 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
                 Uri uri = Uri.withAppendedPath(MediaStore.Downloads.EXTERNAL_CONTENT_URI, "" + fileId);
 
                 String tempPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Downloads.RELATIVE_PATH));
-                Log.d(KEY_TAG, "uri = " + uri.toString() + "   ,path : " + tempPath);
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Downloads.DISPLAY_NAME));
+                Log.d(KEY_TAG, "uri = " + uri.toString() + "   ,path : " + tempPath + " ,name = " + name);
 
                 fileUri.add(uri);
             }
@@ -366,6 +392,7 @@ public class FileFragment extends BaseFragment implements View.OnClickListener {
 //                Log.d(KEY_TAG, "result = " + result.toString());
                 inStream.read(buffer);
                 Log.d(KEY_TAG, "result = " + new String(buffer));
+                textView.setText(new String(buffer));
                 inStream.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

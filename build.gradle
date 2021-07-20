@@ -26,6 +26,61 @@ allprojects {
         google()
         jcenter()
     }
+    //let project evaluate its script first
+    project.afterEvaluate {
+        //only apply to projects that have the android plugin
+        if (project.plugins.hasPlugin('com.android.application')) {
+
+            //add the android sdk manager plugin to andriod projects
+//            apply plugin: 'android-sdk-manager'
+
+            //global android settings
+
+            project.android {
+                packagingOptions {
+                    exclude 'META-INF/beans.xml'
+                    exclude 'META-INF/DEPENDENCIES'
+                    exclude 'META-INF/LICENSE'
+                    exclude 'META-INF/NOTICE'
+                    exclude 'META-INF/LICENSE.txt'
+                    exclude 'META-INF/NOTICE.txt'
+                    exclude 'META-INF/DEPENDENCIES.txt'
+                }
+
+                applicationVariants.all { variant ->
+                    //rename output files
+                    //renameOutputFiles(project, variant)
+                }
+
+                dexOptions {
+                    jumboMode = true
+                    javaMaxHeapSize "2560M"
+                }
+            }
+
+            //signconfig
+            def propsFile = rootProject.file('keystore.properties')
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            def configNameDebug = 'debugConfig'
+            def configNameRelase = 'releaseConfig'
+            if (propsFile.exists() && android.signingConfigs.hasProperty(configNameDebug)) {
+                android.signingConfigs[configNameDebug].storeFile = file(props['storeFile_debug'])
+                android.signingConfigs[configNameDebug].storePassword = props['storePassword_debug']
+                android.signingConfigs[configNameDebug].keyAlias = props['keyAlias_debug']
+                android.signingConfigs[configNameDebug].keyPassword = props['keyPassword_debug']
+            }
+            if (propsFile.exists() && android.signingConfigs.hasProperty(configNameRelase)) {
+                android.signingConfigs[configNameRelase].storeFile = file(props['storeFile_release'])
+                android.signingConfigs[configNameRelase].storePassword = props['storePassword_release']
+                android.signingConfigs[configNameRelase].keyAlias = props['keyAlias_release']
+                android.signingConfigs[configNameRelase].keyPassword = props['keyPassword_release']
+            }
+        } else if (project.plugins.hasPlugin('com.android.library')) {
+            //add the android sdk manager plugin to andriod projects
+//            apply plugin: 'android-sdk-manager'
+        }
+    }
 }
 
 task clean(type: Delete) {

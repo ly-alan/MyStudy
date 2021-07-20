@@ -1,7 +1,7 @@
 package com.roger.main.fragment;
 
 import android.os.Environment;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.commonlib.base.BaseFragment;
 import com.android.commonlib.utils.L;
