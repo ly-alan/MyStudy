@@ -2,24 +2,24 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" group="MyStudy" />
-      <module fileurl="file://$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" filepath="$PROJECT_DIR$/lib/TvRecycleView/TvRecycleView.iml" group="MyStudy/lib/TvRecycleView" />
-      <module fileurl="file://$PROJECT_DIR$/c_annotations/c_annotations.iml" filepath="$PROJECT_DIR$/c_annotations/c_annotations.iml" group="MyStudy/c_annotations" />
-      <module fileurl="file://$PROJECT_DIR$/c_compiler/c_compiler.iml" filepath="$PROJECT_DIR$/c_compiler/c_compiler.iml" group="MyStudy/c_compiler" />
-      <module fileurl="file://$PROJECT_DIR$/lib/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/lib/commonlib/commonlib.iml" group="MyStudy/lib/commonlib" />
-      <module fileurl="file://$PROJECT_DIR$/javaModule/javaModule.iml" filepath="$PROJECT_DIR$/javaModule/javaModule.iml" group="MyStudy/javaModule" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" group="MyStudy/lib" />
-      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" group="MyStudy/main" />
-      <module fileurl="file://$PROJECT_DIR$/testhanluota/testhanluota.iml" filepath="$PROJECT_DIR$/testhanluota/testhanluota.iml" group="MyStudy/testhanluota" />
-      <module fileurl="file://$PROJECT_DIR$/testimagesize/testimagesize.iml" filepath="$PROJECT_DIR$/testimagesize/testimagesize.iml" group="MyStudy/testimagesize" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testjetpack/testjetpack.iml" filepath="$PROJECT_DIR$/.idea/modules/testjetpack/testjetpack.iml" group="MyStudy/testjetpack" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testlogan/testlogan.iml" filepath="$PROJECT_DIR$/.idea/modules/testlogan/testlogan.iml" group="MyStudy/testlogan" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testlogin/testlogin.iml" filepath="$PROJECT_DIR$/.idea/modules/testlogin/testlogin.iml" group="MyStudy/testlogin" />
-      <module fileurl="file://$PROJECT_DIR$/testsort/testsort.iml" filepath="$PROJECT_DIR$/testsort/testsort.iml" group="MyStudy/testsort" />
-      <module fileurl="file://$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" filepath="$PROJECT_DIR$/lib/tv_titlebar/tv_titlebar.iml" group="MyStudy/lib/tv_titlebar" />
-      <module fileurl="file://$PROJECT_DIR$/tvmodule/tvmodule.iml" filepath="$PROJECT_DIR$/tvmodule/tvmodule.iml" group="MyStudy/tvmodule" />
-      <module fileurl="file://$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" filepath="$PROJECT_DIR$/lib/tvtablayout/tvtablayout.iml" group="MyStudy/lib/tvtablayout" />
-      <module fileurl="file://$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/lib/utillibrary/utillibrary.iml" group="MyStudy/lib/utillibrary" />
+      <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/c_annotations/MyStudy.c_annotations.iml" filepath="$PROJECT_DIR$/.idea/modules/c_annotations/MyStudy.c_annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/c_compiler/MyStudy.c_compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/c_compiler/MyStudy.c_compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/javaModule/MyStudy.javaModule.iml" filepath="$PROJECT_DIR$/.idea/modules/javaModule/MyStudy.javaModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/MyStudy.lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/MyStudy.lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/TvRecycleView/MyStudy.lib.TvRecycleView.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/TvRecycleView/MyStudy.lib.TvRecycleView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/commonlib/MyStudy.lib.commonlib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/commonlib/MyStudy.lib.commonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/tv_titlebar/MyStudy.lib.tv_titlebar.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/tv_titlebar/MyStudy.lib.tv_titlebar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/tvtablayout/MyStudy.lib.tvtablayout.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/tvtablayout/MyStudy.lib.tvtablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/utillibrary/MyStudy.lib.utillibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/utillibrary/MyStudy.lib.utillibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/main/MyStudy.main.iml" filepath="$PROJECT_DIR$/.idea/modules/main/MyStudy.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testhanluota/MyStudy.testhanluota.iml" filepath="$PROJECT_DIR$/.idea/modules/testhanluota/MyStudy.testhanluota.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testimagesize/MyStudy.testimagesize.iml" filepath="$PROJECT_DIR$/.idea/modules/testimagesize/MyStudy.testimagesize.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testjetpack/MyStudy.testjetpack.iml" filepath="$PROJECT_DIR$/.idea/modules/testjetpack/MyStudy.testjetpack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testlogan/MyStudy.testlogan.iml" filepath="$PROJECT_DIR$/.idea/modules/testlogan/MyStudy.testlogan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testlogin/MyStudy.testlogin.iml" filepath="$PROJECT_DIR$/.idea/modules/testlogin/MyStudy.testlogin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testsort/MyStudy.testsort.iml" filepath="$PROJECT_DIR$/.idea/modules/testsort/MyStudy.testsort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tvmodule/MyStudy.tvmodule.iml" filepath="$PROJECT_DIR$/.idea/modules/tvmodule/MyStudy.tvmodule.iml" />
     </modules>
   </component>
 </project>
