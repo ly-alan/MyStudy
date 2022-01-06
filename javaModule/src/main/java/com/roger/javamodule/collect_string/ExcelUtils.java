@@ -223,6 +223,7 @@ public class ExcelUtils {
             for (index = 0; index < 10; index++) {
                 cell = row.getCell(index);
                 if (cell != null && !Utils.isEmpty(cell.getStringCellValue())) {
+                    System.out.println(index + "  cell = " + cell.getStringCellValue());
                     continue;
                 } else {
                     break;
@@ -251,8 +252,9 @@ public class ExcelUtils {
             }
         }
 
+        //从第index列开始填入数据
         List<Object> rowData = null;
-        for (int i = 0; i < columnDatas.size(); i++) {
+        for (int i = index; i < columnDatas.size(); i++) {
             rowData = columnDatas.get(i);
             if (null == rowData) {
                 continue;
@@ -281,6 +283,7 @@ public class ExcelUtils {
                     if (null == cell) {
                         cell = row.createCell(Math.max(index, i));
                     }
+                    System.out.println(index + " 写入单元格:" + (j + 1) + " : " + i + "  : " + rowData.get(j) + " 替换 " + cell.getStringCellValue());
                     setValue(cell, rowData.get(j));
                 }
             }

@@ -67,4 +67,16 @@ public class StringModel {
     public void setLanguage(String language) {
         this.language = language;
     }
+
+    @Override
+    public String toString() {
+        return "StringModel{" +
+                "parentPath='" + parentPath + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", parentName='" + parentName + '\'' +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }

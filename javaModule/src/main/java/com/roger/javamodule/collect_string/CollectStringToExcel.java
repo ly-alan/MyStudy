@@ -14,9 +14,14 @@ import java.util.List;
  */
 public class CollectStringToExcel {
 
-    private static String ROOT_FILE_PATH = "D:\\Work\\mfc-droid\\lib-ui";
+    //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_netdisk\\src\\mfc\\res\\values\\strings.xml";
+//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\c_ui\\src\\main\\res\\values-es\\strings.xml";
+//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_home\\src\\mfc\\res\\values\\strings.xml";
+//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
+    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_netdisk";
 
-    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
+        private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
+//    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";
 
     public static void main(String[] args) {
         System.out.println("start traverse");
@@ -85,16 +90,27 @@ public class CollectStringToExcel {
                             //没有添加过key
                             data.get(0).add(stringModels.get(i).key);
                         }
-
+                        if (stringModels.get(i).key.contains("cloud_guide")){
+                            System.out.println(stringModels.get(i));
+                        }
                         if (data.get(0).get(i).equals(stringModels.get(i).key)) {
                             //key是对的，填入value
                             data.get(title.size() - 1).add(stringModels.get(i).value);
                         } else {
                             //key对不上，两个文件值顺序有区别，找到对应的key的值填入
+                            boolean hasTranslate = false;
                             for (StringModel model : stringModels) {
                                 if (data.get(0).get(i).equals(model.key)) {
+//                                    System.out.println("i = " + i + " : data : " + data.get(title.size() - 1).size() + " : " + data.get(0).get(i) + " : " + model.value);
                                     data.get(title.size() - 1).add(model.value);
+                                    hasTranslate = true;
+                                    break;
                                 }
+                            }
+                            //未找到对应的翻译
+                            if (!hasTranslate) {
+                                System.out.println("缺失翻译: " + title.get(title.size() - 1) + " : " + data.get(0).get(i) + ": ");
+                                data.get(title.size() - 1).add("");
                             }
                         }
                     }
