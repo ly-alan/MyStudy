@@ -34,8 +34,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':lib:TvRecycleView')
-    implementation project(path: ':lib:tvtablayout')
+//    implementation project(path: ':lib:tvtablayout')
     implementation project(path: ':lib:commonlib')
+    implementation project(path: ':lib:drawermenu')
     implementation "com.android.support:leanback-v17:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"

@@ -23,7 +23,8 @@ public class MainFragment extends BaseFragment {
     String[] mDatas = {
             "测试SpanString:SpanStrFragment",
             "测试oom:OOMFragment",
-            "测试android 10文件系统:FileFragment"
+            "测试android 10文件系统:FileFragment",
+            "测试MenuDrawer:MenuDrawerFragment"
     };
 
     @Nullable
@@ -46,13 +47,13 @@ public class MainFragment extends BaseFragment {
         titleStyle1();
     }
 
-    private void titleStyle1(){
+    private void titleStyle1() {
         tvTitleBar.setSubLogo(R.mipmap.ic_launcher);
         tvTitleBar.setTitle("title > SubTitle");
         tvTitleBar.setSubtitle("122");
         tvTitleBar.setMenuText("CN");
         tvTitleBar.setSubMenuText("16:05");
-        tvTitleBar.setLeftLayoutPadding(200,30,0,0);
+        tvTitleBar.setLeftLayoutPadding(200, 30, 0, 0);
         tvTitleBar.showLeftTitleDivider(getResources().getDrawable(R.mipmap.home_line));
 //        tvTitleBar.showRightTitleDivider(getResources().getDrawable(R.mipmap.home_line));
     }

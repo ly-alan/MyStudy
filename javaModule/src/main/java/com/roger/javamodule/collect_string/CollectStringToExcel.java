@@ -18,7 +18,7 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\c_ui\\src\\main\\res\\values-es\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_home\\src\\mfc\\res\\values\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
-    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_netdisk";
+    private static String ROOT_FILE_PATH = "D:\\Work\\live\\tve3-android\\mix-mobile";
 
         private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";

@@ -1,6 +1,7 @@
 package com.example.testjetpack.login
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,10 @@ class LoginFragment : Fragment() {
             openMainActivity();
         }
         binding.tvRegister.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.registerFragment)
+//            Navigation.findNavController(it).navigate(R.id.registerFragment)
+            var url = "mfccontent://vod.detail?id=100039042&pageId=1"
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent);
         }
         binding.tvResetPwd.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.resetPwdFragment)
@@ -33,9 +37,13 @@ class LoginFragment : Fragment() {
 
 
     private fun openMainActivity() {
-        var intent = Intent(activity, MainActivity::class.java)
+//        var intent = Intent(activity, MainActivity::class.java)
+//        startActivity(intent);
+//        activity?.finish();
+        var url = "kidscontent://vod.detail?id=100039042&pageId=1"
+        var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent);
-        activity?.finish();
+
     }
 }
 

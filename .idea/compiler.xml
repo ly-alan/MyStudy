@@ -24,7 +24,10 @@
       <module name="c_annotations" target="1.7" />
       <module name="c_compiler" target="1.7" />
       <module name="javaModule" target="1.7" />
+      <module name="MyStudy.Connect-SDK-Android" target="1.8" />
       <module name="MyStudy.lib.commonlib" target="1.8" />
+      <module name="MyStudy.lib.drawermenu" target="1.8" />
+      <module name="MyStudy.lib.menudrawer" target="1.8" />
       <module name="MyStudy.lib.tv_titlebar" target="1.8" />
       <module name="MyStudy.lib.TvRecycleView" target="1.8" />
       <module name="MyStudy.lib.tvtablayout" target="1.8" />

@@ -7,7 +7,6 @@ import android.view.View;
 import com.android.commonlib.base.BaseActivity;
 import com.roger.c_annotations.RandomInt;
 import com.roger.c_annotations.TestBindView;
-//import com.roger.c_annotations.TestUtils;
 import com.roger.c_annotations.TestUtils;
 import com.roger.tvmodule.R;
 

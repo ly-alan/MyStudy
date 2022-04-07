@@ -3,12 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyStudy.iml" filepath="$PROJECT_DIR$/MyStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Connect-SDK-Android/MyStudy.Connect-SDK-Android.iml" filepath="$PROJECT_DIR$/.idea/modules/Connect-SDK-Android/MyStudy.Connect-SDK-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/c_annotations/MyStudy.c_annotations.iml" filepath="$PROJECT_DIR$/.idea/modules/c_annotations/MyStudy.c_annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/c_compiler/MyStudy.c_compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/c_compiler/MyStudy.c_compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/javaModule/MyStudy.javaModule.iml" filepath="$PROJECT_DIR$/.idea/modules/javaModule/MyStudy.javaModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/MyStudy.lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/MyStudy.lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/TvRecycleView/MyStudy.lib.TvRecycleView.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/TvRecycleView/MyStudy.lib.TvRecycleView.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/commonlib/MyStudy.lib.commonlib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/commonlib/MyStudy.lib.commonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/drawermenu/MyStudy.lib.drawermenu.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/drawermenu/MyStudy.lib.drawermenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/tv_titlebar/MyStudy.lib.tv_titlebar.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/tv_titlebar/MyStudy.lib.tv_titlebar.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/tvtablayout/MyStudy.lib.tvtablayout.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/tvtablayout/MyStudy.lib.tvtablayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/utillibrary/MyStudy.lib.utillibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/utillibrary/MyStudy.lib.utillibrary.iml" />

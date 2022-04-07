@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="30dp"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <include
+        android:id="@+id/c_ui_content"
+        layout="@layout/layout_menu_content" />
+
+    <include
+        android:id="@+id/c_ui_sliding"
+        layout="@layout/layout_menu_sliding"
+        android:visibility="gone" />
+
+</FrameLayout>
