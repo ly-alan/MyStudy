@@ -1,12 +1,8 @@
 *.iml
 .gradle
 /local.properties
-#前面带斜杠表示根目录，不带斜杠可以是子目录，只要名字对的上
-/.idea/
-.idea/*
+.idea/
 .DS_Store
-#后面带斜杠表示该文件夹下所有内容，不带表示就是以这个结尾
-/build/
 build/
 /captures
 .externalNativeBuild
