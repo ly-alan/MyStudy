@@ -5,3 +5,4 @@ include  ':lib:utillibrary', ':testimagesize', ':testsort', ':testhanluota', ':t
 include ':lib:tv_titlebar'
 include ':lib:drawermenu'
 include ':Connect-SDK-Android'
+include ':autoclick'

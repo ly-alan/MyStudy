@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AutoClick</string>
+    <string name="label_in_manifest">这里是模拟点击服务</string>
+    <string name="description_in_manifest">这里是功能描述详情</string>
+    <string name="description_in_xml">点击功能的详情描述</string>
+
+    <string name="float_dialog_tv_open">开</string>
+    <string name="float_dialog_tv_close">关</string>
+</resources>
