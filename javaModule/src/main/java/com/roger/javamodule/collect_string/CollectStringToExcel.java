@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+
 /**
  * 查找string.xml中的翻译并整理成excel文档
  */
@@ -20,13 +22,36 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
     private static String ROOT_FILE_PATH = "D:\\Work\\live\\tve3-android\\mix-mobile";
 
-        private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
+    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";
 
     public static void main(String[] args) {
         System.out.println("start traverse");
+        ROOT_FILE_PATH = selectFolderPath();
+        if (ROOT_FILE_PATH == null || ROOT_FILE_PATH.length() == 0) {
+            System.out.println("Select folder is null");
+            return;
+        }
+        SAVE_FILE_PATH = ROOT_FILE_PATH + File.separator + "dist";
         traverseXmlForString(new File(ROOT_FILE_PATH));
     }
+
+    /**
+     * 选择文件夹路径
+     *
+     * @return
+     */
+    private static String selectFolderPath() {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        if (f != null) {
+            return f.getPath();
+        }
+        return "";
+    }
+
 
     private static List<String> title = new ArrayList<>();
     private static List<List<Object>> data = new ArrayList<>();
@@ -90,9 +115,9 @@ public class CollectStringToExcel {
                             //没有添加过key
                             data.get(0).add(stringModels.get(i).key);
                         }
-                        if (stringModels.get(i).key.contains("cloud_guide")){
-                            System.out.println(stringModels.get(i));
-                        }
+//                        if (stringModels.get(i).key.contains("cloud_guide")) {
+//                            System.out.println(stringModels.get(i));
+//                        }
                         if (data.get(0).get(i).equals(stringModels.get(i).key)) {
                             //key是对的，填入value
                             data.get(title.size() - 1).add(stringModels.get(i).value);

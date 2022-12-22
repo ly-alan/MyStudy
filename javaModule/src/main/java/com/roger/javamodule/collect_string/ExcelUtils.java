@@ -57,6 +57,8 @@ public class ExcelUtils {
         File file = new File(filePath);
         if (file.exists()) {
             return file;
+        } else {
+            file.getParentFile().mkdirs();
         }
         //可以表示xls和xlsx格式文件的类
         XSSFWorkbook workbook = new XSSFWorkbook();
