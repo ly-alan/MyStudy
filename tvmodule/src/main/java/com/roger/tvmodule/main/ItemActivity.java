@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.android.commonlib.base.BaseActivity;
 import com.roger.c_annotations.TestBindView;
 import com.roger.c_annotations.TestUtils;
+import com.roger.c_annotations.Test_Log;
 import com.roger.tvmodule.FragmentFactory;
 import com.roger.tvmodule.R;
 
@@ -28,7 +29,7 @@ public class ItemActivity extends BaseActivity {
     @TestBindView(R.id.frame_layout_fragment)
     View view;
 
-
+    @Test_Log
     public static void startActivity(Context context, String fragmentName) {
         Intent intent = new Intent(context, ItemActivity.class);
         intent.putExtra(KEY_FRAGMENT_NAME, fragmentName);
