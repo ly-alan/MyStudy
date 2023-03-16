@@ -11,7 +11,8 @@ dependencies {
 sourceCompatibility = "7"
 targetCompatibility = "7"
 
-//
+/********************** 上面是正常运行的代码，下面是打可执行jar的  ******************************/
+
 //task deleteOldJar(type: org.gradle.api.tasks.Delete){
 //    //删除存在的
 //    delete'build/libs/javaModule.jar'
@@ -23,8 +24,8 @@ targetCompatibility = "7"
 //
 //    //设置拷贝的文件
 //    from('build/classes/java/main')
-////    from (project.zipTree("build/intermediates/bundles/release/classes.jar"))//添加classes
-////    from (project.zipTree("libs/jxl-2.6.6.jar"))//jxl-2.6.6.jar作为源码添加到jar中
+//    from (project.zipTree("build/intermediates/bundles/release/classes.jar"))//添加classes
+//    from (project.zipTree("libs/jxl-2.6.6.jar"))//jxl-2.6.6.jar作为源码添加到jar中
 //
 //    //去掉不需要打包的目录和文件
 //    exclude('BuildConfig.class','R.class')
@@ -34,36 +35,39 @@ targetCompatibility = "7"
 //
 //makeJar.dependsOn(deleteOldJar,build)
 
+
+
+/************** 使用 shadow打包 *****************/
 //
-//apply plugin: 'com.github.johnrengelman.shadow'
-//apply plugin: 'java'
-//
-//buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        //5.0.0 需要gradle 5.0+ 才可构建
-//        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.0'
-//    }
-//}
-//
-//shadowJar {
-//    manifest{
-//        //main 函数地址类,全路径
-//        attributes 'Main-Class': 'com.roger.javamodule.collect_string.CollectStringToExcel'
-//    }
-//    baseName = 'CollectStringToExcel'
-//    version = 'V1.0'
-//    dependencies {
-//        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去，太多了，不好用
-//        include(dependency('org.apache.poi:poi:5.0.0'))
-//        //多个
-//        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
-//    }
-//}
-//
-//compileJava {
-//    sourceCompatibility = "8"
-//    targetCompatibility = "8"
-//}
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        //5.0.0 需要gradle 5.0+ 才可构建
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.0'
+    }
+}
+
+shadowJar {
+    manifest{
+        //main 函数地址类,全路径
+        attributes 'Main-Class': 'com.roger.javamodule.collect_string.CollectStringToExcel'
+    }
+    baseName = 'CollectStringToExcel'
+    version = 'V1.1'
+    dependencies {
+        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去，太多了，不好用
+        include(dependency('org.apache.poi:poi:5.0.0'))
+        //多个
+        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
+    }
+}
+
+compileJava {
+    sourceCompatibility = "8"
+    targetCompatibility = "8"
+}
