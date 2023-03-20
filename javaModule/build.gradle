@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 //    implementation files('libs/jxl-2.6.6.jar')
     implementation 'org.apache.poi:poi:5.0.0'
     implementation 'org.apache.poi:poi-ooxml:5.0.0'
@@ -36,7 +36,6 @@ targetCompatibility = "7"
 //makeJar.dependsOn(deleteOldJar,build)
 
 
-
 /************** 使用 shadow打包 *****************/
 //
 apply plugin: 'com.github.johnrengelman.shadow'
@@ -52,18 +51,33 @@ buildscript {
     }
 }
 
+//shadowJar {
+//    manifest{
+//        //main 函数地址类,全路径
+//        attributes 'Main-Class': 'com.roger.javamodule.collect_string.CollectStringToExcel'
+//    }
+//    baseName = 'CollectStringToExcel'
+//    version = 'V1.1'
+//    dependencies {
+//        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去，太多了，不好用
+//        include(dependency('org.apache.poi:poi:5.0.0'))
+//        //多个
+//        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
+//    }
+//}
+
 shadowJar {
-    manifest{
-        //main 函数地址类,全路径
-        attributes 'Main-Class': 'com.roger.javamodule.collect_string.CollectStringToExcel'
+    manifest {
+        //多渠道打包
+        attributes 'Main-Class': 'com.roger.javamodule.multi_flavor_package.MultiFlavor'
     }
-    baseName = 'CollectStringToExcel'
-    version = 'V1.1'
+    baseName = '多渠道打包'
+    version = 'V1.0.0'
     dependencies {
-        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去，太多了，不好用
-        include(dependency('org.apache.poi:poi:5.0.0'))
-        //多个
-        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
+//        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去
+//        include(dependency('org.apache.poi:poi:5.0.0'))
+//        //多个
+//        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
     }
 }
 
