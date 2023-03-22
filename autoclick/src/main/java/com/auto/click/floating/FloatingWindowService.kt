@@ -14,25 +14,28 @@ import android.os.Message
 import android.provider.Settings
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import com.auto.click.R
+import com.auto.click.utils.SpUtils
 
 /**
  * @Author Roger
  * @Date 2022/9/9 9:59
- * @Description 桌面的悬浮弹窗
+ * @Description 桌面的悬浮弹窗，标识任务的状态
  */
 class FloatingWindowService : Service() {
+
+    private var DEF_WIN_POINT_X = "window_point_x"
+    private var DEF_WIN_POINT_Y = "window_point_y"
 
     private lateinit var windowManager: WindowManager
     private lateinit var layoutParams: WindowManager.LayoutParams
     private lateinit var tvContent: AppCompatTextView
-    private lateinit var handler: Handler
 
-    private var receiver: MyReceiver? = null
     private var floatingView: View? = null
     private val stringBuilder = StringBuilder()
 
@@ -44,12 +47,6 @@ class FloatingWindowService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        // 注册广播
-        receiver = MyReceiver()
-        val filter = IntentFilter()
-        filter.addAction("android.intent.action.MyReceiver")
-        registerReceiver(receiver, filter);
-
         // 获取windowManager并设置layoutParams
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
         layoutParams = WindowManager.LayoutParams().apply {
@@ -64,19 +61,8 @@ class FloatingWindowService : Service() {
             flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             width = resources.getDimensionPixelOffset(R.dimen.float_dialog_width)
             height = resources.getDimensionPixelOffset(R.dimen.float_dialog_height)
-            x = 300
-            y = 300
-        }
-        handler = Handler(this.mainLooper) { msg ->
-            tvContent.text = msg.obj as String
-            // 当文本超出屏幕自动滚动，保证文本处于最底部
-            val offset = tvContent.lineCount * tvContent.lineHeight
-            floatingView?.apply {
-                if (offset > height) {
-                    tvContent.scrollTo(0, offset - height)
-                }
-            }
-            false
+            x = SpUtils.getInt(DEF_WIN_POINT_X, 300)
+            y = SpUtils.getInt(DEF_WIN_POINT_Y, 300)
         }
     }
 
@@ -86,7 +72,7 @@ class FloatingWindowService : Service() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (Settings.canDrawOverlays(this)) {
+        if (Settings.canDrawOverlays(this) && !attached) {
             floatingView = LayoutInflater.from(this).inflate(R.layout.layout_floating_window, null)
             tvContent = floatingView!!.findViewById(R.id.tv_content)
 //            floatingView!!.findViewById<AppCompatImageView>(R.id.iv_close).setOnClickListener {
@@ -117,8 +103,11 @@ class FloatingWindowService : Service() {
                                 layoutParams.x = layoutParams.x + offsetX
                                 layoutParams.y = layoutParams.y + offsetY
                                 windowManager.updateViewLayout(floatingView, layoutParams)
+                                SpUtils.putInt(DEF_WIN_POINT_X, layoutParams.x)
+                                SpUtils.putInt(DEF_WIN_POINT_Y, layoutParams.y)
                             }
                             MotionEvent.ACTION_UP -> {
+                                Log.d("liao", "$x : $y")
                                 if (touchTime > 0 && System.currentTimeMillis() - touchTime < 300) {
                                     //点击
                                     clickFloatDialog()
@@ -144,26 +133,15 @@ class FloatingWindowService : Service() {
             Toast.makeText(this, getString(R.string.float_dialog_tv_open), Toast.LENGTH_SHORT).show()
         } else {
             tvContent.text = getString(R.string.float_dialog_tv_close)
+            Toast.makeText(this, getString(R.string.float_dialog_tv_close), Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onDestroy() {
         // 注销广播并删除浮窗
-        unregisterReceiver(receiver)
-        receiver = null
         if (attached) {
             windowManager.removeView(floatingView)
         }
     }
 
-    inner class MyReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val content = intent.getStringExtra("content") ?: ""
-            stringBuilder.append(content).append("\n")
-            val message = Message.obtain()
-            message.what = 0
-            message.obj = stringBuilder.toString()
-            handler.sendMessage(message)
-        }
-    }
 }

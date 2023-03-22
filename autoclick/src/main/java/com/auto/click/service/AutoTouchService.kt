@@ -9,7 +9,7 @@ import android.view.accessibility.AccessibilityEvent
  * @Date 2022/9/6 10:51
  * @Description
  */
-class TestAccessibilityService : BaseAccessibilityService() {
+class AutoTouchService : BaseAccessibilityService() {
 
     /*内部类单利*/
 //    companion object {
@@ -22,9 +22,11 @@ class TestAccessibilityService : BaseAccessibilityService() {
 
 //    override fun onServiceConnected() {
 //        super.onServiceConnected()
+//        //代码中动态设置监控对象
+//        Log.d("liao","onServiceConnected")
 //        var serviceInfo = AccessibilityServiceInfo()
 //        serviceInfo.eventTypes = AccessibilityEvent.TYPES_ALL_MASK
-//        serviceInfo.packageNames = arrayOf("com.test")
+//        serviceInfo.packageNames = arrayOf("com.auto.click")
 //        serviceInfo.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
 //        setServiceInfo(serviceInfo)
 //    }

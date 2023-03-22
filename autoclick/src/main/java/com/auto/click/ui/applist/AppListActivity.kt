@@ -30,7 +30,7 @@ class AppListActivity : MVVMBaseActivity<AppListViewModel, ActivityAppListBindin
         })
 
         mBinding?.rvAppList?.let {
-            it.addOnItemTouchListener()
+//            it.addOnItemTouchListener()
 
         }
     }

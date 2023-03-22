@@ -9,10 +9,10 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/tv_setting"
+            android:id="@+id/tv_select_pkg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="setting"
+            android:text="选择应用"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/tv_start"
             app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="start"
-            app:layout_constraintLeft_toRightOf="@+id/tv_setting"
+            app:layout_constraintLeft_toRightOf="@+id/tv_select_pkg"
             app:layout_constraintRight_toLeftOf="@+id/tv_stop"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,12 +35,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_describe"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_model_list"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/teal_200"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_start" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_select_pkg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

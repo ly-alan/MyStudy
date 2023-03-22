@@ -20,11 +20,11 @@ open class BaseAccessibilityService : AccessibilityService() {
 
     override fun onCreate() {
         super.onCreate()
-        AccessibilityServiceHelper.setCallBack(object : ICallBack {
-            override fun call(obj: Any) {
-
-            }
-        })
+//        AccessibilityHelper.setCallBack(object : ICallBack {
+//            override fun call(obj: Any) {
+//
+//            }
+//        })
     }
 
 /*懒汉式单利*/
