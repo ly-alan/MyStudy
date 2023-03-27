@@ -1,7 +1,7 @@
 package com.roger.javamodule.multi_flavor_package;
 
 import com.roger.javamodule.util.JarUtils;
-import com.roger.javamodule.util.LogUtils;
+import com.roger.javamodule.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,7 +112,7 @@ public class MultiFlavor {
     }
 
     private static void logs(String msg) {
-        LogUtils.logs(msg);
+        Log.i("MultiFlavor", msg);
     }
 
 }
