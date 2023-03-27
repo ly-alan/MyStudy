@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.auto.click.model.AppInfo
 import java.security.MessageDigest
 
@@ -25,6 +27,7 @@ object Utils {
      * @param isFilterSystem 是否过滤系统应用
      * @return
      */
+    @RequiresApi(Build.VERSION_CODES.P)
     fun getAllAppInfo(ctx: Context, isFilterSystem: Boolean): ArrayList<AppInfo> {
         val appBeanList: ArrayList<AppInfo> = ArrayList()
         var bean = AppInfo()
@@ -35,14 +38,22 @@ object Utils {
             bean.icon = p.applicationInfo.loadIcon(packageManager);
             bean.label = (packageManager.getApplicationLabel(p.applicationInfo).toString())
             bean.packageName = (p.applicationInfo.packageName)
-            bean.sign = md5(p.signatures[0].toByteArray())
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    bean.sign = md5(p.signingInfo.apkContentsSigners[0].toByteArray())
+                } else {
+
+                }
+            } catch (e: Exception) {
+
+            }
             val flags: Int = p.applicationInfo.flags
             // 判断是否是属于系统的apk
             if (flags and ApplicationInfo.FLAG_SYSTEM !== 0 && isFilterSystem) {
 //                bean.setSystem(true);
-            } else {
-                appBeanList.add(bean)
+                continue
             }
+            appBeanList.add(bean)
         }
         return appBeanList
     }

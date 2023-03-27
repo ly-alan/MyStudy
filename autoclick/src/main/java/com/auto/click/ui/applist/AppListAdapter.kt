@@ -36,6 +36,9 @@ class AppListAdapter : RecyclerView.Adapter<AppListAdapter.MyViewHolder> {
             holder.tvName?.text = it.label
             holder.tvPackage?.text = it.packageName
             holder.tvSign?.setText(it.sign)
+            holder.itemView.setOnClickListener {
+                //点击item
+            }
         }
     }
 
@@ -58,7 +61,7 @@ class AppListAdapter : RecyclerView.Adapter<AppListAdapter.MyViewHolder> {
 
         init {
             Log.d("liao", "item = $itemView")
-            ivIcon = itemView.findViewById(R.id.icon)
+            ivIcon = itemView.findViewById(R.id.iv_app_icon)
             tvName = itemView.findViewById(R.id.tv_app_name)
             tvPackage = itemView.findViewById(R.id.tv_app_package)
             tvSign = itemView.findViewById(R.id.tv_app_sign)

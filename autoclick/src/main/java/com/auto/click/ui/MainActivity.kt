@@ -14,6 +14,7 @@ import com.auto.click.base.BaseActivity
 import com.auto.click.floating.FloatingWindowService
 import com.auto.click.service.AccessibilityHelper
 import com.auto.click.service.AutoTouchService
+import com.auto.click.ui.applist.AppListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -42,7 +43,7 @@ class MainActivity : BaseActivity() {
 
     override fun configUI(view: View) {
         tv_select_pkg.setOnClickListener {
-
+            startActivity(Intent(baseContext, AppListActivity::class.java))
         }
         tv_start.setOnClickListener {
             checkState()
