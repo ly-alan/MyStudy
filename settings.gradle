@@ -3,3 +3,5 @@ include  ':lib:utillibrary', ':testimagesize', ':tvmodule', ':main',':lib:common
 include ':lib:tv_titlebar'
 include ':lib:drawermenu'
 include ':autoclick'
+//include ':Connect-SDK-Android'
+include ':serialport'

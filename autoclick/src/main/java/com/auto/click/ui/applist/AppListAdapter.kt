@@ -1,15 +1,19 @@
 package com.auto.click.ui.applist
 
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.auto.click.MyApplication
 import com.auto.click.R
 import com.auto.click.model.AppInfo
 import com.bumptech.glide.Glide
+import kotlin.coroutines.coroutineContext
 
 /**
  * @Author Roger
@@ -38,6 +42,11 @@ class AppListAdapter : RecyclerView.Adapter<AppListAdapter.MyViewHolder> {
             holder.tvSign?.setText(it.sign)
             holder.itemView.setOnClickListener {
                 //点击item
+//                var serviceInfo = AccessibilityServiceInfo()
+//                serviceInfo.eventTypes = AccessibilityEvent.TYPES_ALL_MASK
+//                serviceInfo.packageNames = arrayOf("com.auto.click")
+//                serviceInfo.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
+//                setServiceInfo(serviceInfo)
             }
         }
     }

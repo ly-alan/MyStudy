@@ -36,7 +36,7 @@
 
         <!--    无障碍服务    -->
         <service
-            android:name=".service.AutoTouchService"
+            android:name=".service.AutoService"
             android:description="@string/description_in_manifest"
             android:exported="true"
             android:label="@string/label_in_manifest"

@@ -13,7 +13,7 @@ import com.auto.click.R
 import com.auto.click.base.BaseActivity
 import com.auto.click.floating.FloatingWindowService
 import com.auto.click.service.AccessibilityHelper
-import com.auto.click.service.AutoTouchService
+import com.auto.click.service.AutoService
 import com.auto.click.ui.applist.AppListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity() {
     private fun checkState() {
         val hasAccessibility: Boolean = AccessibilityHelper.checkAccessibilityOpen(
             baseContext,
-            AutoTouchService::class.java
+            AutoService::class.java
         )
         if (!hasAccessibility) {
             showRequestAccessibilityDialog()

@@ -11,7 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.auto.click.R
 import com.auto.click.base.BaseActivity
 import com.auto.click.service.AccessibilityHelper
-import com.auto.click.service.AutoTouchService
+import com.auto.click.service.AutoService
 import com.auto.click.ui.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -58,7 +58,7 @@ class SplashActivity : BaseActivity() {
     private fun checkState() {
         val hasAccessibility: Boolean = AccessibilityHelper.checkAccessibilityOpen(
             baseContext,
-            AutoTouchService::class.java
+            AutoService::class.java
         )
         if (!hasAccessibility) {
             tv_step.setText(R.string.open_access_service)
