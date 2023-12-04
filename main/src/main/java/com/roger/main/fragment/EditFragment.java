@@ -20,14 +20,14 @@ import com.roger.main.view.PressedEditView;
  * 2个sharePreference也只有前几次调用时间比较长
  * Create by Roger on 2019/10/18
  */
-public class SharePreferenceFragment extends BaseFragment {
+public class EditFragment extends BaseFragment {
 
     PressedEditView et1, et2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_share, container, false);
+        return inflater.inflate(R.layout.fragment_edit, container, false);
     }
 
     @Override

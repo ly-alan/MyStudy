@@ -14,29 +14,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.roger.main.view.PressedEditView
-        android:id="@+id/et_1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/corner_bg"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:inputType="number"
-        android:singleLine="true"
-        android:textAlignment="center"
-        tools:ignore="MissingConstraints" />
-
-    <com.roger.main.view.PressedEditView
-        android:id="@+id/et_2"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/corner_bg"
-        android:gravity="top"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:singleLine="true"
-        tools:ignore="MissingConstraints" />
-
 </LinearLayout>

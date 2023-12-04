@@ -22,8 +22,9 @@ public class MainFragment extends BaseFragment {
     String[] mDatas = {
             "SubString:" + SubStrFragment.class.getSimpleName(),
             "FileFragment:" + FileFragment.class.getSimpleName(),
-            "SharePreference:" + SharePreferenceFragment.class.getSimpleName(),
-            "Share:" + ShareFragment.class.getSimpleName()
+            "EditText:" + EditFragment.class.getSimpleName(),
+            "Share:" + ShareFragment.class.getSimpleName(),
+            "SwitchButton:" + SwitchButtonFragment.class.getSimpleName()
     };
 
     @Nullable

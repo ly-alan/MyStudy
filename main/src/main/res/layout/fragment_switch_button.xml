@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp" />
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:id="@+id/switch_btn"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        app:kswTextOff="关闭"
+        app:kswTextOn="打开" />
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        app:kswTextOff="关闭"
+        app:kswTextOn="打开状态"
+        app:kswThumbHeight="46dp"
+        app:kswThumbWidth="46dp" />
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        app:kswTextOff="这里是关闭状态"
+        app:kswTextOn="这里是打开状态"
+        app:kswThumbHeight="46dp"
+        app:kswThumbWidth="46dp" />
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        app:kswTextOff="这里是关闭状态"
+        app:kswTextOn="这里是打开状态"
+        app:kswTextThumbInset="10dp"
+        app:kswTextExtra="30dp"
+        app:kswThumbHeight="46dp"
+        app:kswThumbWidth="46dp" />
+
+
+
+</LinearLayout>

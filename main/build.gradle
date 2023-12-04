@@ -32,4 +32,6 @@ dependencies {
     implementation project(path: ':lib:commonlib')
 //    implementation project(path: ':Connect-SDK-Android')
 //    implementation 'com.connectsdk:connect-sdk-android:1.6.0'
+
+    implementation 'com.kyleduo.switchbutton:library:2.1.0'
 }
