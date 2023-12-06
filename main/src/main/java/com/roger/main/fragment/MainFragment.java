@@ -24,6 +24,7 @@ public class MainFragment extends BaseFragment {
             "FileFragment:" + FileFragment.class.getSimpleName(),
             "EditText:" + EditFragment.class.getSimpleName(),
             "Share:" + ShareFragment.class.getSimpleName(),
+            "DatePicker:" + DatePickerFragment.class.getSimpleName(),
             "SwitchButton:" + SwitchButtonFragment.class.getSimpleName()
     };
 

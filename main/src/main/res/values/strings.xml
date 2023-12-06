@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MainModule&lt;&amp;&gt;</string>
+
+<!--    <drawable name="numberpicker_selection_divider">@null</drawable>-->
 </resources>
