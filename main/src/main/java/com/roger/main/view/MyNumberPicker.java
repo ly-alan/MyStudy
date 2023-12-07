@@ -45,6 +45,11 @@ public class MyNumberPicker extends NumberPicker {
                 Log.d("liao", "old : new =  = " + oldVal + newVa);
             }
         });
+    }
+
+    @Override
+    public void setMaxValue(int maxValue) {
+        super.setMaxValue(maxValue);
         setNumberPickerDividerColor(this);
     }
 

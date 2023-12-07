@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -13,26 +14,63 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp">
 
-        <NumberPicker
+        <cn.carbswang.android.numberpickerview.library.NumberPickerView
             android:id="@+id/tv_picker_year"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="0dp"
             app:npv_ShownCount="5"
+            app:npv_WrapSelectorWheel="true"
+            app:npv_TextColorNormal="@color/ksw_md_solid_checked"
+            app:npv_DividerMarginLeft="10dp"
+            app:npv_DividerMarginRight="10dp"
+            app:npv_DividerColor="@color/ksw_md_back_color"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <com.roger.main.view.MyNumberPicker
+        <cn.carbswang.android.numberpickerview.library.NumberPickerView
             android:id="@+id/tv_picker_month"
             android:layout_width="0dp"
             app:npv_ShownCount="5"
+            app:npv_WrapSelectorWheel="true"
+            app:npv_TextColorNormal="@color/ksw_md_solid_checked"
+            app:npv_DividerMarginLeft="10dp"
+            app:npv_DividerMarginRight="10dp"
+            app:npv_DividerColor="@color/ksw_md_back_color"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <NumberPicker
+        <cn.carbswang.android.numberpickerview.library.NumberPickerView
             android:id="@+id/tv_picker_day"
             android:layout_width="0dp"
             app:npv_ShownCount="5"
+            app:npv_WrapSelectorWheel="true"
+            app:npv_TextColorNormal="@color/ksw_md_solid_checked"
+            app:npv_DividerMarginLeft="10dp"
+            app:npv_DividerMarginRight="10dp"
+            app:npv_DividerColor="@color/ksw_md_back_color"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <cn.carbswang.android.numberpickerview.library.NumberPickerView
+            android:id="@+id/tv_picker_hour"
+            android:layout_width="0dp"
+            app:npv_ShownCount="5"
+            app:npv_WrapSelectorWheel="true"
+            app:npv_TextColorNormal="@color/ksw_md_solid_checked"
+            app:npv_DividerMarginLeft="10dp"
+            app:npv_DividerMarginRight="10dp"
+            app:npv_DividerColor="@color/ksw_md_back_color"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <cn.carbswang.android.numberpickerview.library.NumberPickerView
+            android:id="@+id/tv_picker_min"
+            android:layout_width="0dp"
+            app:npv_ShownCount="5"
+            app:npv_WrapSelectorWheel="true"
+            app:npv_TextColorNormal="@color/ksw_md_solid_checked"
+            app:npv_DividerMarginLeft="10dp"
+            app:npv_DividerMarginRight="10dp"
+            app:npv_DividerColor="@color/ksw_md_back_color"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
