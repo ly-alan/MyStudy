@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
 
     defaultConfig {
@@ -30,9 +30,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayout}"
     implementation project(path: ':lib:commonlib')
+    implementation project(path: ':lib:SwitchButton')
 //    implementation project(path: ':Connect-SDK-Android')
 //    implementation 'com.connectsdk:connect-sdk-android:1.6.0'
 
-    implementation 'com.kyleduo.switchbutton:library:2.1.0'
+//    implementation 'com.kyleduo.switchbutton:library:2.1.0'
     implementation 'cn.carbswang.android:NumberPickerView:1.2.0'
 }
