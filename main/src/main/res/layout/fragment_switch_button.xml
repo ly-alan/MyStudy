@@ -47,10 +47,15 @@
         android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_marginTop="48dp"
+        android:gravity="center"
         app:kswTextOff="这里是关闭状态"
         app:kswTextOn="这里是打开状态"
         app:kswTextThumbInset="10dp"
+        app:kswThumbTextOn="开"
+        app:kswThumbTextOff="关"
         app:kswTextExtra="30dp"
+        app:kswThumbTextColor="@color/colorPrimary"
+        app:kswThumbTextSize="24sp"
         app:kswThumbHeight="46dp"
         app:kswThumbWidth="46dp" />
 

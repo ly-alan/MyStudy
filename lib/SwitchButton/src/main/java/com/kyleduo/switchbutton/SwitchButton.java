@@ -21,6 +21,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
@@ -63,6 +64,7 @@ public class SwitchButton extends CompoundButton {
     private int mBackHeight;
 
     private int mCurrThumbColor, mCurrBackColor, mNextBackColor, mOnTextColor, mOffTextColor;
+    private int mThumbOnTextColor, mThumbOffTextColor;
     private Drawable mCurrentBackDrawable, mNextBackDrawable;
     private RectF mThumbRectF, mBackRectF, mSafeRectF, mTextOnRectF, mTextOffRectF;
     private Paint mPaint;
@@ -95,6 +97,13 @@ public class SwitchButton extends CompoundButton {
     private boolean mCatch = false;
     private UnsetPressedState mUnsetPressedState;
 
+    //Thumb内的文字
+    private CharSequence mThumbTextOn;
+    private CharSequence mThumbTextOff;
+    private Layout mThumbOnLayout;
+    private Layout mThumbOffLayout;
+    private TextPaint mThumbTextPaint;
+
     private OnCheckedChangeListener mChildOnCheckedChangeListener;
 
     public SwitchButton(Context context, AttributeSet attrs, int defStyle) {
@@ -122,6 +131,8 @@ public class SwitchButton extends CompoundButton {
         mRectPaint.setStrokeWidth(getResources().getDisplayMetrics().density);
 
         mTextPaint = getPaint();
+
+        mThumbTextPaint = new TextPaint(mTextPaint);
 
         mThumbRectF = new RectF();
         mBackRectF = new RectF();
@@ -191,6 +202,21 @@ public class SwitchButton extends CompoundButton {
             textThumbInset = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextThumbInset, 0);
             textExtra = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextExtra, 0);
             textAdjust = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextAdjust, 0);
+
+            mThumbTextOn = ta.getString(R.styleable.SwitchButton_kswThumbTextOn);
+            mThumbTextOff = ta.getString(R.styleable.SwitchButton_kswThumbTextOff);
+
+            ColorStateList thumbTextColor = ta.getColorStateList(R.styleable.SwitchButton_kswThumbTextColor);
+            float thumbTextSize = ta.getDimension(R.styleable.SwitchButton_kswThumbTextSize, mTextPaint.getTextSize());
+            if (thumbTextSize > 0) {
+                mThumbTextPaint.setTextSize(thumbTextSize);
+            }
+            if (thumbTextColor != null) {
+                int defaultTextColor = thumbTextColor.getDefaultColor();
+                mThumbOnTextColor = thumbTextColor.getColorForState(CHECKED_PRESSED_STATE, defaultTextColor);
+                mThumbOffTextColor = thumbTextColor.getColorForState(UNCHECKED_PRESSED_STATE, defaultTextColor);
+//                mThumbTextPaint.setColor(thumbTextColor.getDefaultColor());
+            }
             ta.recycle();
         }
 
@@ -279,6 +305,10 @@ public class SwitchButton extends CompoundButton {
         return new StaticLayout(text, mTextPaint, (int) Math.ceil(Layout.getDesiredWidth(text, mTextPaint)), Layout.Alignment.ALIGN_CENTER, 1.f, 0, false);
     }
 
+    private Layout makeThumbLayout(CharSequence text) {
+        return new StaticLayout(text, mThumbTextPaint, (int) Math.ceil(Layout.getDesiredWidth(text, mThumbTextPaint)), Layout.Alignment.ALIGN_CENTER, 1.f, 0, false);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         /*
@@ -289,6 +319,13 @@ public class SwitchButton extends CompoundButton {
         }
         if (mOffLayout == null && !TextUtils.isEmpty(mTextOff)) {
             mOffLayout = makeLayout(mTextOff);
+        }
+        //thumbText
+        if (mThumbOnLayout == null && !TextUtils.isEmpty(mThumbTextOn)) {
+            mThumbOnLayout = makeThumbLayout(mThumbTextOn);
+        }
+        if (mThumbOffLayout == null && !TextUtils.isEmpty(mThumbTextOff)) {
+            mThumbOffLayout = makeThumbLayout(mThumbTextOff);
         }
 
         float onWidth = mOnLayout != null ? mOnLayout.getWidth() : 0;
@@ -640,6 +677,27 @@ public class SwitchButton extends CompoundButton {
             canvas.drawRoundRect(mPresentThumbRectF, mThumbRadius, mThumbRadius, mPaint);
         }
 
+        // text
+        Layout thumbText = getProgress() > 0.5 ? mThumbOnLayout : mThumbOffLayout;
+        RectF thumbRectF = mPresentThumbRectF;
+        if (thumbText != null && thumbRectF != null) {
+//            int alpha = (int) (255 * (getProgress() >= 0.75 ? getProgress() * 4 - 3 : (getProgress() < 0.25 ? 1 - getProgress() * 4 : 0)));
+//            int textColor = getProgress() > 0.5 ? mOnTextColor : mOffTextColor;
+//            int colorAlpha = Color.alpha(textColor);
+//            colorAlpha = colorAlpha * alpha / 255;
+//            thumbText.getPaint().setARGB(colorAlpha, Color.red(textColor), Color.green(textColor), Color.blue(textColor));
+            int textColor = getProgress() > 0.5 ? mThumbOnTextColor : mThumbOffTextColor;
+            mThumbTextPaint.setColor(textColor);
+            //计算baseline,文字居中
+            Paint.FontMetrics fontMetrics = mThumbTextPaint.getFontMetrics();
+            float distance = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
+            float baseline = thumbRectF.centerY() + distance;
+            canvas.drawText(thumbText.getText().toString(),
+                    thumbRectF.centerX() - (int) (thumbText.getWidth() / 2),
+                    baseline,
+                    mThumbTextPaint);
+        }
+
 
         if (mDrawDebugRect) {
             mRectPaint.setColor(Color.parseColor("#AA0000"));
@@ -670,6 +728,13 @@ public class SwitchButton extends CompoundButton {
             mOnTextColor = textColors.getColorForState(CHECKED_PRESSED_STATE, defaultTextColor);
             mOffTextColor = textColors.getColorForState(UNCHECKED_PRESSED_STATE, defaultTextColor);
         }
+        if (mThumbOnTextColor == 0) {
+            mThumbOnTextColor = mOnTextColor;
+        }
+        if (mThumbOffTextColor == 0) {
+            mThumbOffTextColor = mOffTextColor;
+        }
+
         if (!mIsBackUseDrawable && mBackColor != null) {
             mCurrBackColor = mBackColor.getColorForState(getDrawableState(), mCurrBackColor);
             mNextBackColor = mBackColor.getColorForState(nextState, mCurrBackColor);
