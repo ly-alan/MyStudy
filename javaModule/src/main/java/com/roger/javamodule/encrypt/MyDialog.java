@@ -1,27 +1,17 @@
 package com.roger.javamodule.encrypt;
 
-import org.apache.commons.codec.binary.Base64;
-
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 /**
@@ -33,14 +23,14 @@ public class MyDialog extends JFrame {
 
     public static void main(String[] args) {
         new MyDialog("生成字符串");
-        System.out.println("1706775624 -》 " + new BigInteger("1706775624", 10).toString(36));
-        System.out.println("s865i0 -》 " + new BigInteger("s865i0", 36).toString(10));
+//        System.out.println("1706775624000-axzk = " + getEncrypt("1706775624","axzk"));
     }
 
     JLabel jlabel1, jLabel2, jLabel3;
     JTextField jtf1, jtf2, jtf3;
     JButton jb1, jb2;
     JPanel pane;
+
     /**
      * 构造函数
      *
@@ -69,7 +59,7 @@ public class MyDialog extends JFrame {
         pane.add(jLabel2);
         pane.add(jtf2);
 
-        jb1 = new JButton("保存");
+        jb1 = new JButton("加密");
         jb1.setBounds(130, 150, 70, 30);
         pane.add(jb1);
 
@@ -95,33 +85,35 @@ public class MyDialog extends JFrame {
         jb1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (jtf1.getText().trim().length() != 10 ) {
+                if (jtf1.getText().trim().length() != 10) {
                     //10位，s的时间戳。13位，毫秒
-                    JOptionPane.showMessageDialog(null, "输入时间错误！！！");
+                    JOptionPane.showMessageDialog(null, "输入时间戳（秒）错误！！！");
                 }
                 if (jtf2.getText().trim().length() == 0) {
                     JOptionPane.showMessageDialog(null, "输入名称错误！！！");
                 }
                 //先转36进制
-                String time = new BigInteger(jtf1.getText().trim(), 10).toString(36);
-                System.out.println("time = " + time);
-                String name = jtf2.getText().trim();
-                System.out.println("name = " + name);
-                String result = new StringBuffer(time + "-" + name).reverse().toString();
-                System.out.println("result = " + name);
-                try {
-                    String base64 = new String(new BASE64Encoder().encode(result.getBytes(StandardCharsets.UTF_8)));
-                    jtf3.setText(base64);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    jtf3.setText("加密失败");
-                }
-
+                jtf3.setText(getEncrypt(jtf1.getText().trim(), jtf2.getText().trim()));
             }
 
         });
-
         this.setVisible(true);
+    }
+
+    private static String getEncrypt(String text1, String text2) {
+        String time = new BigInteger(text1, 10).toString(36);
+        System.out.println("time = " + time);
+        String name = new BigInteger(text2, 36).toString(26);
+        System.out.println("name = " + name);
+        String result = new StringBuffer(time + "-" + name).reverse().toString();
+        System.out.println("result = " + result);
+        try {
+            String base64 = new String(new BASE64Encoder().encode(result.getBytes(StandardCharsets.UTF_8)));
+            return base64;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
     }
 
 }
