@@ -55,7 +55,7 @@ public class MyDialog extends JFrame {
         pane = new JPanel();
         pane.setBounds(10, 10, 400, 300);
         pane.setLayout(null);
-        jlabel1 = new JLabel("过期时间戳(ms):");
+        jlabel1 = new JLabel("过期时间(s):");
         jlabel1.setBounds(20, 40, 100, 30);
         jtf1 = new JTextField();
         jtf1.setBounds(130, 40, 260, 30);
@@ -95,7 +95,8 @@ public class MyDialog extends JFrame {
         jb1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (jtf1.getText().trim().length() == 0) {
+                if (jtf1.getText().trim().length() != 10 ) {
+                    //10位，s的时间戳。13位，毫秒
                     JOptionPane.showMessageDialog(null, "输入时间错误！！！");
                 }
                 if (jtf2.getText().trim().length() == 0) {
