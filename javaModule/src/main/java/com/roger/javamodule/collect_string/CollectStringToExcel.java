@@ -20,19 +20,21 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\c_ui\\src\\main\\res\\values-es\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_home\\src\\mfc\\res\\values\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
-    private static String ROOT_FILE_PATH = "D:\\Work\\live\\tve3-android\\mix-mobile";
+//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
+    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2";
+//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2\\m_account\\src\\main";
 
-    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final";
+    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final\\dist";
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";
 
     public static void main(String[] args) {
         System.out.println("start traverse");
-        ROOT_FILE_PATH = selectFolderPath();
-        if (ROOT_FILE_PATH == null || ROOT_FILE_PATH.length() == 0) {
-            System.out.println("Select folder is null");
-            return;
-        }
-        SAVE_FILE_PATH = ROOT_FILE_PATH + File.separator + "dist";
+//        ROOT_FILE_PATH = selectFolderPath();
+//        if (ROOT_FILE_PATH == null || ROOT_FILE_PATH.length() == 0) {
+//            System.out.println("Select folder is null");
+//            return;
+//        }
+//        SAVE_FILE_PATH = ROOT_FILE_PATH + File.separator + "dist";
         traverseXmlForString(new File(ROOT_FILE_PATH));
     }
 
@@ -108,36 +110,53 @@ public class CollectStringToExcel {
                     }
                     //添加语言列
                     title.add(stringModels.get(0).language);
-                    data.add(new ArrayList<Object>());
-
+                    //建一个和key的长度对应的翻译文本列
+                    if (data.size() == 0) {
+                        data.add(new ArrayList<Object>());
+                    } else {
+                        List<Object> emptyList = new ArrayList<>();
+                        for (int i = 0; i < data.get(0).size(); i++) {
+                            emptyList.add("");
+                        }
+                        data.add(emptyList);
+                    }
                     for (int i = 0; i < stringModels.size(); i++) {
-                        if (data.get(0).size() <= i) {
+                        if (!data.get(0).contains(stringModels.get(i).key)) {
                             //没有添加过key
                             data.get(0).add(stringModels.get(i).key);
+                            //这个key的几种语言先弄成空字符串
+                            for (int j = 1; j < data.size(); j++) {
+                                data.get(j).add("");
+                            }
                         }
-//                        if (stringModels.get(i).key.contains("cloud_guide")) {
+//                        if (stringModels.get(i).key.contains("account_yes_i_know")) {
 //                            System.out.println(stringModels.get(i));
 //                        }
-                        if (data.get(0).get(i).equals(stringModels.get(i).key)) {
-                            //key是对的，填入value
-                            data.get(title.size() - 1).add(stringModels.get(i).value);
-                        } else {
-                            //key对不上，两个文件值顺序有区别，找到对应的key的值填入
-                            boolean hasTranslate = false;
-                            for (StringModel model : stringModels) {
-                                if (data.get(0).get(i).equals(model.key)) {
-//                                    System.out.println("i = " + i + " : data : " + data.get(title.size() - 1).size() + " : " + data.get(0).get(i) + " : " + model.value);
-                                    data.get(title.size() - 1).add(model.value);
-                                    hasTranslate = true;
-                                    break;
-                                }
-                            }
-                            //未找到对应的翻译
-                            if (!hasTranslate) {
-                                System.out.println("缺失翻译: " + title.get(title.size() - 1) + " : " + data.get(0).get(i) + ": ");
-                                data.get(title.size() - 1).add("");
-                            }
+                        //对应key所在的位置
+                        int index = data.get(0).indexOf(stringModels.get(i).key);
+                        if (index >= 0) {
+                            data.get(title.size() - 1).set(index, stringModels.get(i).value);
                         }
+//                        if (data.get(0).get(i).equals(stringModels.get(i).key)) {
+//                            //key行数是对的，填入value
+//                            data.get(title.size() - 1).add(stringModels.get(i).value);
+//                        } else {
+//                            //key对不上，两个文件值顺序有区别，找到对应的key的值填入
+//                            boolean hasTranslate = false;
+//                            for (StringModel model : stringModels) {
+//                                if (data.get(0).get(i).equals(model.key)) {
+////                                    System.out.println("i = " + i + " : data : " + data.get(title.size() - 1).size() + " : " + data.get(0).get(i) + " : " + model.value);
+//                                    data.get(title.size() - 1).add(model.value);
+//                                    hasTranslate = true;
+//                                    break;
+//                                }
+//                            }
+//                            //未找到对应的翻译
+//                            if (!hasTranslate) {
+//                                System.out.println("缺失翻译: " + title.get(title.size() - 1) + " : " + data.get(0).get(i) + ": ");
+//                                data.get(title.size() - 1).add("");
+//                            }
+//                        }
                     }
                     System.out.println("读取xml文件完成，保存文件信息到excel");
                     saveXmlString(stringModels);
