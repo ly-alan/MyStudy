@@ -5,6 +5,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +14,11 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * @Author Roger
@@ -21,7 +28,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class XmlUtils {
 
 
-    public static String XML = "xml";
+    public static String XML = ".xml";
 
     /**
      * 读取
@@ -73,6 +80,54 @@ public class XmlUtils {
         return false;
     }
 
+
+//    /**
+//     * 生成xml方法
+//     */
+//    public static void createStringXml(String key, String value) {
+//        Document doc = null;
+//        Element root = null;
+//        try {
+//            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//            DocumentBuilder builder = factory.newDocumentBuilder();
+//            doc = builder.newDocument();
+//            root = doc.createElement("resource");
+//            doc.appendChild(root);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return;
+//        }
+//
+//        int len = list.size();
+//        Element element;
+//        for (int i = 0; i < len; i++) {
+//            Person person = list.get(i);
+//            element = doc.createElement("person" + (i + 1));
+//            element.setAttribute("age", "" + person.getAge());
+//            element.setAttribute("name", person.getName());
+//            root.appendChild(element);
+//        }
+//    }
+
+
+    /**
+     * 将XML文件输出到指定的路径
+     *
+     * @param doc
+     * @param fileName
+     * @throws Exception
+     */
+    public static void outputXml(Document doc, String fileName) throws Exception {
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer = tf.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");//设置文档的换行与缩进
+        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
+        StreamResult result = new StreamResult(pw);
+        transformer.transform(source, result);
+        System.out.println("生成XML文件成功!");
+    }
 
 }
 

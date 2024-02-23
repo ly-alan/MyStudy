@@ -78,8 +78,8 @@ public class ExcelUtils {
         return file;
     }
 
-    public static final String XLS = "xls";
-    public static final String XLSX = "xlsx";
+    public static final String XLS = ".xls";
+    public static final String XLSX = ".xlsx";
     private static final DateFormat FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     /**
@@ -221,8 +221,7 @@ public class ExcelUtils {
             if (null == row) {
                 row = sheet.createRow(0);
             }
-            //先写个10，不会有超过10种语言吧？
-            for (index = 0; index < 10; index++) {
+            for (index = 0; index < title.size(); index++) {
                 cell = row.getCell(index);
                 if (cell != null && !Utils.isEmpty(cell.getStringCellValue())) {
                     System.out.println(index + "  cell = " + cell.getStringCellValue());
