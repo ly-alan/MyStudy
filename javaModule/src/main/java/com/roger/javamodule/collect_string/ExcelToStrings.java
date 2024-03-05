@@ -1,5 +1,7 @@
 package com.roger.javamodule.collect_string;
 
+import com.roger.javamodule.util.Log;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -14,38 +16,36 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
- * @Author Roger
- * @Date 2024/2/22 19:29
  * @Description excel文件转化为android的strings文件
  */
 public class ExcelToStrings {
     //android根目录地址
 //    private static String ROOT_PROJECT_PATH = "D:\\Work\\live\\tve3-android\\mix-mobile";
-    private static String ROOT_PROJECT_PATH = "D:\\Work\\cv-media-droid\\m_settings\\src";
+    private static String ROOT_PROJECT_PATH = "D:\\work\\cv-media-mobile-v2";
 
     //想要读取的excel文件地址
-    private static String EXCEL_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final\\mfc_string\\mfc_stb_string.xls";
-    //   excel第一列的char
-    private static char EXCEL_COLUMN_START_KEY = 'A';
+    private static String EXCEL_FILE_PATH = "D:\\Program Files\\Lark\\mfc_mobile_string.xls";
+    //   excel第一列的char（一般都是ABCD），常量，用来计算value在那一列
+    private static final char EXCEL_COLUMN_START_KEY = 'A';
     //excel保存key在哪一列，需要大写
     private static char EXCEL_COLUMN_KEY = 'A';
-    //key从哪一行开始
-    private static int EXCEL_COLUMN_KEY_START_ROW = 1;
+//    //key从哪一行开始
+//    private static int EXCEL_COLUMN_KEY_START_ROW = 2;
 
     //excel保存value在哪一列,需要大写
-    private static char EXCEL_COLUMN_VALUE = 'C';
-    //value从哪一行开始
-    private static int EXCEL_COLUMN_VALUE_START_ROW = 1;
+    private static char EXCEL_COLUMN_VALUE = 'E';
+//    //value从哪一行开始
+//    private static int EXCEL_COLUMN_VALUE_START_ROW = 1;
 
     //strings文件的key有多少个，从起始地址向下扫描多少行（不用格子为空判断，防止中间有很多空行）
-    private static int MAX_STRINGS_NUM = 2000;
+    private static int MAX_STRINGS_NUM = 5000;
 
     //保存的文件路径，如果有多个string文件，下面会新建多个strings.xml文件
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\StringDist";
-    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final\\mfc_string";
+    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\final\\mfc_string";
 
-    //    生成的string.xml保存文件夹
-    private static String SAVE_FILE_FOLDER = "values-en";
+    //    生成的string.xml保存文件夹，第一行一般都是语言标识，可以考虑按第一行命名
+    private static String SAVE_FILE_FOLDER = "values-ru";
 
 
     //遍历的excel中的键值对
@@ -82,7 +82,7 @@ public class ExcelToStrings {
             //读取所有的string
             List<List<Object>> result = ExcelUtils.readExcelFirstSheet(excelFile);
             //按key转换为map,从指定行开始
-            for (int i = EXCEL_COLUMN_KEY_START_ROW; i < Math.min(result.size(), MAX_STRINGS_NUM); i++) {
+            for (int i = 0; i < Math.min(result.size(), MAX_STRINGS_NUM); i++) {
                 List<Object> rowList = result.get(i);//指定行的单元格
                 try {
                     excelMap.put(String.valueOf(rowList.get(EXCEL_COLUMN_KEY - EXCEL_COLUMN_START_KEY)),
@@ -165,7 +165,7 @@ public class ExcelToStrings {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 doc = builder.newDocument();
-                root = doc.createElement("resource");
+                root = doc.createElement("resources");
                 doc.appendChild(root);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -177,7 +177,10 @@ public class ExcelToStrings {
             for (StringModel stringModel : stringModels) {
                 try {
                     elementString = doc.createElement("string");
-                    elementString.setAttribute(stringModel.getKey(), excelMap.get(stringModel.getKey()));
+                    elementString.setAttribute("name", stringModel.getKey());
+                    elementString.setTextContent(excelMap.get(stringModel.getKey()));
+//                    Log.d("liao", "key = " + stringModel.getKey() + " = " + excelMap.get(stringModel.getKey()));
+//                    elementString.setAttribute(stringModel.getKey(), excelMap.get(stringModel.getKey()));
                     root.appendChild(elementString);
                 } catch (Exception e) {
 
