@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设定到期时间戳" />
+
+    <EditText
+        android:id="@+id/et_crypt_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="设置公司名字（字母小写）" />
+
+    <EditText
+        android:id="@+id/et_crypt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="qqwertyuiopasdfghjklzxcvbnm"
+        android:singleLine="true" />
+
+
+    <Button
+        android:id="@+id/ok_crypt"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="生成加密串" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加密结果" />
+
+    <EditText
+        android:id="@+id/et_crypt_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true" />
+
+</LinearLayout>
