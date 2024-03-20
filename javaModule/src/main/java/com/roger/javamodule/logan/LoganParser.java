@@ -20,8 +20,12 @@ package com.roger.javamodule.logan;/*
  * THE SOFTWARE.
  */
 
+import com.roger.javamodule.util.Log;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -44,12 +48,24 @@ public class LoganParser {
     private static final String ALGORITHM = "AES";
     private static final String ALGORITHM_TYPE = "AES/CBC/NoPadding";
     private Cipher mDecryptCipher;
-    private byte[] mEncryptKey16; //128位ase加密Key
-    private byte[] mEncryptIv16; //128位aes加密IV
+    private static byte[] mEncryptKey16 = "0123456789012345".getBytes(); //128位ase加密Key
+    private static byte[] mEncryptIv16 = "0123456789012345".getBytes(); //128位aes加密IV
+
+    private static final String OriginFilePath = "C:\\Users\\admin\\Desktop\\TempFile\\cache\\logan_cache\\logan.mmap2";
+    private static final String SaveFilePath = "C:\\Users\\admin\\Desktop\\TempFile\\output\\out.txt";
+
+    public static void main(String[] args) {
+        try {
+            new LoganParser(mEncryptKey16, mEncryptIv16)
+                    .parse(new FileInputStream(OriginFilePath), new FileOutputStream(SaveFilePath));
+        } catch (Exception e) {
+            Log.e("liao", "error:" + e);
+        }
+    }
 
     public LoganParser(byte[] encryptKey16, byte[] encryptIv16) {
-        mEncryptKey16 = encryptKey16;
-        mEncryptIv16 = encryptIv16;
+//        mEncryptKey16 = encryptKey16;
+//        mEncryptIv16 = encryptIv16;
         initEncrypt();
     }
 
