@@ -21,10 +21,10 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_home\\src\\mfc\\res\\values\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
-    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2";
+    private static String ROOT_FILE_PATH = "D:\\work\\live_merge\\tve3-android\\mix-mobile\\c_live_template";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2\\m_account\\src\\main";
 
-    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\final\\dist";
+    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\Live资源文件\\Live资源文件调整\\Live资源文件调整\\step2\\live_mobile";
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";
 
     public static void main(String[] args) {

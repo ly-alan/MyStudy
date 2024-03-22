@@ -24,7 +24,8 @@ public class ExcelToStrings {
     private static String ROOT_PROJECT_PATH = "D:\\work\\cv-media-mobile-v2";
 
     //想要读取的excel文件地址
-    private static String EXCEL_FILE_PATH = "D:\\Program Files\\Lark\\mfc_mobile_string.xls";
+//    private static String EXCEL_FILE_PATH = "D:\\Program Files\\Lark\\mfc_mobile_string.xls";
+    private static String EXCEL_FILE_PATH = "D:\\work\\live_merge\\tve3-android\\mix-mobile\\c_live_template";
     //   excel第一列的char（一般都是ABCD），常量，用来计算value在那一列
     private static final char EXCEL_COLUMN_START_KEY = 'A';
     //excel保存key在哪一列，需要大写
@@ -33,7 +34,7 @@ public class ExcelToStrings {
 //    private static int EXCEL_COLUMN_KEY_START_ROW = 2;
 
     //excel保存value在哪一列,需要大写
-    private static char EXCEL_COLUMN_VALUE = 'E';
+    private static char EXCEL_COLUMN_VALUE = 'B';
 //    //value从哪一行开始
 //    private static int EXCEL_COLUMN_VALUE_START_ROW = 1;
 
@@ -42,10 +43,10 @@ public class ExcelToStrings {
 
     //保存的文件路径，如果有多个string文件，下面会新建多个strings.xml文件
 //    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\StringDist";
-    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\final\\mfc_string";
+    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\Live资源文件\\Live资源文件调整\\Live资源文件调整\\live_stb_string";
 
     //    生成的string.xml保存文件夹，第一行一般都是语言标识，可以考虑按第一行命名
-    private static String SAVE_FILE_FOLDER = "values-ru";
+    private static String SAVE_FILE_FOLDER = "values-en";
 
 
     //遍历的excel中的键值对
@@ -68,8 +69,10 @@ public class ExcelToStrings {
         }
         //遍历excel中的key和value值，保存起来
         traverseExcel(new File(EXCEL_FILE_PATH), excelMap);
+        //直接将excel的文件输出成xml文件
+        outputXmlString();
         //遍历android项目中的strings.xml文件
-        traverseProjectToStringXml(new File(ROOT_PROJECT_PATH));
+//        traverseProjectToStringXml(new File(ROOT_PROJECT_PATH));
     }
 
     /**
@@ -94,6 +97,21 @@ public class ExcelToStrings {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 将excelMap输出成xml
+     */
+    private static void outputXmlString() {
+        File parent = new File(SAVE_FILE_PATH + File.separator + SAVE_FILE_FOLDER);
+        List<StringModel> stringModels = new ArrayList<>();
+        for (String key : excelMap.keySet()) {
+            StringModel model = new StringModel();
+            model.setKey(key);
+            model.setValue(excelMap.get(key));
+            stringModels.add(model);
+        }
+        saveXmlString(parent, stringModels);
     }
 
     /**
@@ -131,7 +149,13 @@ public class ExcelToStrings {
             if (XmlUtils.isXmlFile(projectRootFile.getName())) {
                 //读取原有的文件
                 List<StringModel> stringModels = XmlUtils.getStringMapForXml(projectRootFile);
-                saveXmlString(stringModels);
+                System.out.println("目录文件：" + stringModels.get(0).getParentPath() + " : " + stringModels.get(0).getLanguage());
+                String filePath = stringModels.get(0).getParentPath();
+                filePath = filePath.substring(0, filePath.lastIndexOf("\\"));
+                filePath = filePath.replace("\\", "_");
+                filePath = filePath.replace(":", "_");
+                File parent = new File(SAVE_FILE_PATH + File.separator + filePath + File.separator + SAVE_FILE_FOLDER);
+                saveXmlString(parent, stringModels);
             } else {
                 System.out.println("file is not excel");
             }
@@ -143,14 +167,9 @@ public class ExcelToStrings {
      *
      * @param stringModels
      */
-    private static void saveXmlString(List<StringModel> stringModels) {
+    private static void saveXmlString(File saveFile, List<StringModel> stringModels) {
         try {
-            System.out.println("目录文件：" + stringModels.get(0).getParentPath() + " : " + stringModels.get(0).getLanguage());
-            String filePath = stringModels.get(0).getParentPath();
-            filePath = filePath.substring(0, filePath.lastIndexOf("\\"));
-            filePath = filePath.replace("\\", "_");
-            filePath = filePath.replace(":", "_");
-            File parent = new File(SAVE_FILE_PATH + File.separator + filePath + File.separator + SAVE_FILE_FOLDER);
+            File parent = saveFile;
             if (!parent.exists()) {
                 parent.mkdirs();
             }
