@@ -44,6 +44,8 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayout}"
     implementation project(path: ':lib:commonlib')
     implementation project(path: ':lib:SwitchButton')
+
+    implementation 'org.apache.commons:commons-lang3:3.9'
 //    implementation project(path: ':Connect-SDK-Android')
 //    implementation 'com.connectsdk:connect-sdk-android:1.6.0'
 
