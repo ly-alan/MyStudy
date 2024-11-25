@@ -43,7 +43,15 @@ apply plugin: 'java'
 
 buildscript {
     repositories {
-        jcenter()
+        google()
+//        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
     }
     dependencies {
         //5.0.0 需要gradle 5.0+ 才可构建
