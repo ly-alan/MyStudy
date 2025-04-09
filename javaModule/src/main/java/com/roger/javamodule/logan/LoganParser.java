@@ -51,8 +51,8 @@ public class LoganParser {
     private static byte[] mEncryptKey16 = "0123456789012345".getBytes(); //128位ase加密Key
     private static byte[] mEncryptIv16 = "0123456789012345".getBytes(); //128位aes加密IV
 
-    private static final String OriginFilePath = "D:\\Program Files\\WeChat Files\\wxid_z281q8b7gbie22\\FileStorage\\File\\2024-05\\LocalCache(8)\\LocalCache\\log\\1716134400000";
-    private static final String SaveFilePath = "D:\\Program Files\\WeChat Files\\wxid_z281q8b7gbie22\\FileStorage\\File\\2024-05\\LocalCache(8)\\LocalCache\\log\\5-20-17.txt";
+    private static final String OriginFilePath = "D:\\Program Files\\WeChat Files\\wxid_z281q8b7gbie22\\FileStorage\\File\\2024-12\\LocalCache\\LocalCache\\log\\1734883200000";
+    private static final String SaveFilePath = "D:\\Program Files\\WeChat Files\\wxid_z281q8b7gbie22\\FileStorage\\File\\2024-12\\LocalCache\\LocalCache\\log\\1734883200000.txt";
 
     public static void main(String[] args) {
         try {

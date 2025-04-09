@@ -1,8 +1,16 @@
 package com.roger.javamodule.leecode;
 
+import org.apache.commons.collections4.map.LinkedMap;
+import org.apache.commons.math3.analysis.function.Max;
+
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Strings {
 
@@ -230,6 +238,24 @@ public class Strings {
     }
 
     /**
+     * 如果nums没有呗排序的情况
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{map.get(nums[i]), map.get(target - nums[i])};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[]{-1, -1};
+    }
+
+    /**
      * 移除nums中等于val的元素
      *
      * @param nums
@@ -307,6 +333,31 @@ public class Strings {
             j++;
         }
         return k == Integer.MAX_VALUE ? 0 : k;
+    }
+
+    /**
+     * 检测字符串无重复字符的最长子串的长度
+     *
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        Set<Character> hashSet = new HashSet();
+        int maxLength = 0;
+        for (int left = 0, right = 0; right < s.length(); right++) {
+            char cur = s.charAt(right);
+            while (hashSet.contains(cur)) {
+                //如果有重复元素，就把这个重复元素之前的都去掉
+                hashSet.remove(s.charAt(left));
+                left++;
+            }
+            hashSet.add(cur);
+            maxLength = Math.max(maxLength, hashSet.size());
+        }
+        return maxLength;
     }
 
 }

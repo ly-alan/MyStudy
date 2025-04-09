@@ -1,5 +1,7 @@
 package com.roger.javamodule.collect_string;
 
+import com.roger.javamodule.util.Log;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -447,5 +450,73 @@ public class ExcelUtils {
             cell.setCellValue(value.toString());
         }
     }
+
+    /**
+     * 保存文件到excel表格，
+     *
+     * @param excelObjList
+     * @param book
+     */
+    public static void writeDataToExcel(List<ExcelObj> excelObjList, Workbook book) {
+        if (excelObjList == null || excelObjList.isEmpty()) {
+            System.out.println("需要保存的数据为空");
+            return;
+        }
+        Sheet sheet = book.getSheetAt(0);
+        Row row = null;
+        Cell cell = null;
+
+        // 获取所有字段
+        Field[] fields = ExcelObj.class.getDeclaredFields();
+        //获取第一行，写入字段名，作为title
+        row = sheet.getRow(0);
+        if (null == row) {
+            row = sheet.createRow(0);
+        }
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].setAccessible(true);// 允许访问私有字段
+            cell = row.getCell(i);
+            if (null == cell) {
+                cell = row.createCell(i);
+            }
+            cell.setCellValue(fields[i].getName());
+        }
+        //写入参数值
+        for (int j = 0; j < excelObjList.size(); j++) {
+            writeExcelObjToRow(sheet, excelObjList.get(j), j + 1);
+        }
+
+    }
+
+    /**
+     * 将ExcelObj的参数按顺序写入第rowNum行
+     *
+     * @param sheet
+     * @param excelObj
+     * @param rowNum
+     */
+    private static void writeExcelObjToRow(Sheet sheet, ExcelObj excelObj, int rowNum) {
+        // 获取所有字段
+        Field[] fields = ExcelObj.class.getDeclaredFields();
+        //获取第一行，写入字段名，作为title
+        Row row = sheet.getRow(rowNum);
+        Cell cell = null;
+        if (null == row) {
+            row = sheet.createRow(rowNum);
+        }
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].setAccessible(true);// 允许访问私有字段
+            cell = row.getCell(i);
+            if (null == cell) {
+                cell = row.createCell(i);
+            }
+            try {
+                cell.setCellValue(String.valueOf(fields[i].get(excelObj)));
+            } catch (Exception e) {
+                System.out.println("写入单元格:(" + rowNum + "," + i + "): " + fields[i].getName() + " 错误 " + e.getMessage());
+            }
+        }
+    }
+
 
 }
