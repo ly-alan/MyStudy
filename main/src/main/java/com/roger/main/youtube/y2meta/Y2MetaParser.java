@@ -4,7 +4,8 @@ package com.roger.main.youtube.y2meta;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.cv.media.c.trailer.youtube.DefaultYouTubeParser;
+
+import com.roger.main.youtube.DefaultYouTubeParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;

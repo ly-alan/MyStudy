@@ -50,9 +50,9 @@ dependencies {
 //    implementation 'com.connectsdk:connect-sdk-android:1.6.0'
 
 //    implementation 'com.kyleduo.switchbutton:library:2.1.0'
-    implementation 'cn.carbswang.android:NumberPickerView:1.2.0'
 
     implementation 'org.apache.poi:poi:3.9'
     implementation 'org.apache.poi:poi-ooxml:3.9'
     implementation 'org.apache.poi:poi-ooxml-schemas:3.9'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

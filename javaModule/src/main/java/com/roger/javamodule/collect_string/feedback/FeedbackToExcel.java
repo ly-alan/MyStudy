@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeedbackToExcel {
-    private static String APP_ID = "watchlist-mobile";
+    private static String APP_ID = "megamax_mobile";
     //要读取的gson文件位置
     private static String ROOT_FILE_PATH = "D:\\work\\vod-appconfig\\src\\main\\resources\\static\\appconfig\\" + APP_ID + "\\feedback\\issues.json";
     //生成的excel文件保存路径和名称

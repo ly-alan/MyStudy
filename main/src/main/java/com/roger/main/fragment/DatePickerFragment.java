@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import com.android.commonlib.base.BaseFragment;
 import com.roger.main.R;
-import com.roger.main.view.DatePickerDialog;
 
 import java.util.Calendar;
 
@@ -41,7 +40,6 @@ public class DatePickerFragment extends BaseFragment {
                 Log.d("liao", "2023-10 = " + getMonthLastDay(2023, 10));
                 Log.d("liao", "2024-2 = " + getMonthLastDay(2024, 2));
                 Log.d("liao", "2022-2 = " + getMonthLastDay(2022, 2));
-                new DatePickerDialog(getContext()).show();
             }
         });
     }
