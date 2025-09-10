@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.android.commonlib.base.BaseActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.roger.c_annotations.RandomInt;
 import com.roger.c_annotations.TestBindView;
 import com.roger.c_annotations.TestUtils;
 import com.roger.tvmodule.R;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     @TestBindView(R.id.main_browse_fragment)
     View view;

@@ -22,6 +22,7 @@ public class MainFragment extends BaseFragment {
     TvTitleBar tvTitleBar;
     String[] mDatas = {
             "测试recycleView实现epg:EpgFragment",
+            "测试recycleView:RecycleFragment",
             "测试SpanString:SpanStrFragment",
             "测试oom:OOMFragment",
             "测试android 10文件系统:FileFragment",

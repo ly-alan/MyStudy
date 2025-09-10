@@ -5,24 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.commonlib.base.BaseActivity;
 import com.roger.c_annotations.TestBindView;
 import com.roger.c_annotations.TestUtils;
 import com.roger.c_annotations.Test_Log;
 import com.roger.tvmodule.FragmentFactory;
 import com.roger.tvmodule.R;
 
-public class ItemActivity extends BaseActivity {
+public class ItemActivity extends AppCompatActivity {
 
     private static final String KEY_FRAGMENT_NAME = "FRAGMENT_NAME";
 
