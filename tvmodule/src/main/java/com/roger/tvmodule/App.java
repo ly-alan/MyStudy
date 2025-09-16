@@ -1,6 +1,5 @@
 package com.roger.tvmodule;
 
-import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 
