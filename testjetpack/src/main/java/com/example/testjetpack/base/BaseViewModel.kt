@@ -2,7 +2,6 @@ package com.example.testjetpack.base
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -15,8 +14,7 @@ import kotlinx.coroutines.launch
  * MVVM 基础 ViewModel，继承 AndroidViewModel
  * 提供应用上下文访问和协程管理
  */
-open class BaseViewModel(application: Application) : AndroidViewModel(application),
-    LifecycleObserver {
+open class BaseViewModel(application: Application) : AndroidViewModel(application){
 
     // 获取应用上下文
     protected val appContext: Application get() = getApplication()

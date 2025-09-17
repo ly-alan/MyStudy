@@ -60,8 +60,7 @@ abstract class MVVMBaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppC
     private fun initViewModel() {
         val viewModelClass = getViewModelClass()
         viewModel = obtainViewModel(viewModelClass)
-        // 添加生命周期观察
-        lifecycle.addObserver(viewModel)
+
     }
 
     /**
@@ -106,9 +105,6 @@ abstract class MVVMBaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppC
 
     override fun onDestroy() {
         super.onDestroy()
-        if (::viewModel.isInitialized) {
-            lifecycle.removeObserver(viewModel)
-        }
         if (::binding.isInitialized) {
             binding.unbind()
         }

@@ -81,8 +81,6 @@ abstract class MVVMBaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Frag
         val viewModelClass = getViewModelClass()
         viewModel = obtainViewModel(viewModelClass, useActivityScope())
 
-        // 添加生命周期观察
-        lifecycle.addObserver(viewModel)
     }
 
     /**
@@ -137,9 +135,6 @@ abstract class MVVMBaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Frag
 
     override fun onDestroyView() {
         super.onDestroyView()
-        if (::viewModel.isInitialized) {
-            lifecycle.removeObserver(viewModel as LifecycleObserver)
-        }
         if (::binding.isInitialized) {
             binding.unbind()
         }
