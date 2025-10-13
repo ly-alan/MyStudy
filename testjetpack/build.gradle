@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 // 应用 kapt 插件
 apply plugin: 'kotlin-kapt'
 
@@ -9,15 +8,11 @@ android {
     compileSdkVersion 31
     buildToolsVersion "29.0.3"
 
-    // 旧版本的配置方式
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true  // 启用 View Binding
+        // 如果你需要数据绑定，也可以添加 dataBinding true
+        dataBinding true
     }
-
-//    // 如果您同时需要 ViewBinding
-//    viewBinding {
-//        enabled = true
-//    }
 
     defaultConfig {
         applicationId "com.example.testjetpack"
@@ -35,13 +30,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -50,7 +45,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
-
     //security
     implementation "androidx.security:security-crypto:1.1.0-alpha02"
     //navigation
@@ -60,22 +54,21 @@ dependencies {
     //tabLayout + viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
     implementation "com.google.android.material:material:1.2.1"
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-    // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+// 统一生命周期相关依赖版本
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
 
-    //RxAndroid的依赖包
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    //RxJava的依赖包
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    //使用 Kotlin 协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
     //Retrofit2库
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.4'
     //gson解析
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.4'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
 
 }

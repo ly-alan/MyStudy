@@ -3,8 +3,6 @@ package com.example.testjetpack.base
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -18,13 +16,6 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
 
     // 获取应用上下文
     protected val appContext: Application get() = getApplication()
-    protected val compositeDisposable = CompositeDisposable()
-
-
-    // 添加扩展函数
-    fun Disposable.addTo(compositeDisposable: CompositeDisposable) {
-        compositeDisposable.add(this)
-    }
 
     // 协程错误处理器
     protected val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -74,7 +65,5 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
      */
     override fun onCleared() {
         super.onCleared()
-        // 可以在这里取消所有协程或其他清理操作
-        compositeDisposable.clear()
     }
 }

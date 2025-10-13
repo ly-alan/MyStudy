@@ -1,18 +1,16 @@
 package com.example.testjetpack.api
 
 import com.example.testjetpack.model.UserResponse
-import io.reactivex.rxjava3.core.Flowable
-
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserApi {
-    @POST("/login")
-    fun login(
+    @POST("login")
+    suspend fun login(
         @Query("username") userName: String,
         @Query("email") email: String,
         @Query("password") password: String
-    ): Flowable<UserResponse>
+    ): UserResponse
 }
 
 //    @GET("/api/ping/v1")
