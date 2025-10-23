@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 
 /**
  * 查找string.xml中的翻译并整理成excel文档
+ * 将ROOT_FILE_PATH项目下所有的strings文件中字符串导出来保存到SAVE_FILE_PATH下
  */
 public class CollectStringToExcel {
 
@@ -20,12 +21,12 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\c_ui\\src\\main\\res\\values-es\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid\\m_home\\src\\mfc\\res\\values\\strings.xml";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
-//    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
-    private static String ROOT_FILE_PATH = "D:\\work\\live_local\\tve3-android\\tve3-app";
+    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-droid";
+//    private static String ROOT_FILE_PATH = "D:\\work\\live_local\\tve3-android\\tve3-app";
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2\\m_account\\src\\main";
 
-    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\Live资源文件\\Live资源文件调整\\Live资源文件调整\\step2\\live_stb";
-//    private static String SAVE_FILE_PATH = "C:\\Users\\ASUS\\Desktop\\test2";
+    //    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\Live资源文件\\Live资源文件调整\\Live资源文件调整\\step2\\live_stb";
+    private static String SAVE_FILE_PATH = "D:\\Program Files\\Lark\\新品牌vod\\Live翻译";
 
     public static void main(String[] args) {
         System.out.println("start traverse");

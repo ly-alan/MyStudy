@@ -1,7 +1,5 @@
 package com.roger.javamodule.collect_string;
 
-import com.roger.javamodule.util.Log;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -17,6 +15,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * @Description excel文件转化为android的strings文件
+ * 比如新增某一种语言，直接把excel中某一列作为一个新语言写一个对应的strings文件
+ * 如EXCEL_FILE_PATH文件中第EXCEL_COLUMN_KEY列保存的是key，
+ * 第EXCEL_COLUMN_VALUE保存的是value
+ * 新增语言的value文件夹是SAVE_FILE_FOLDER。
+ * 生成的文件保存在SAVE_FILE_FOLDER目录下
  */
 public class ExcelToStrings {
     //android根目录地址

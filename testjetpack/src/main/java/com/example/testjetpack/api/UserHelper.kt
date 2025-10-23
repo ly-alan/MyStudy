@@ -13,8 +13,12 @@ object UserHelper {
     }
 
 
-
     suspend fun login(name: String, email: String, pwd: String): UserResponse {
-        return userApi.login(name, email, pwd);
+        val body = mapOf(
+            "username" to name,
+            "email" to email,
+            "password" to pwd
+        )
+        return userApi.login(body);
     }
 }

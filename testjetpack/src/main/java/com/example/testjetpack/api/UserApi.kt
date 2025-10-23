@@ -1,15 +1,14 @@
 package com.example.testjetpack.api
 
 import com.example.testjetpack.model.UserResponse
+import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface UserApi {
+
     @POST("login")
     suspend fun login(
-        @Query("username") userName: String,
-        @Query("email") email: String,
-        @Query("password") password: String
+        @Body body: Map<String, String>
     ): UserResponse
 }
 
