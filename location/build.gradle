@@ -1,0 +1,63 @@
+apply plugin: 'java-library'
+
+
+dependencies {
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation files('libs/jxl-2.6.6.jar')
+    implementation 'org.apache.poi:poi:5.0.0'
+    implementation 'org.apache.poi:poi-ooxml:5.0.0'
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+}
+
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+
+/************** 使用 shadow打包 *****************/
+//
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        google()
+//        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+    }
+    dependencies {
+        //5.0.0 需要gradle 5.0+ 才可构建
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.0'
+    }
+}
+
+
+shadowJar {
+    manifest {
+        //多渠道打包
+        attributes 'Main-Class': 'com.parse.local.Location'
+    }
+    baseName = '地址解析'
+    version = 'V1.0.0'
+    dependencies {
+//        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去
+//        include(dependency('org.apache.poi:poi:5.0.0'))
+//        //多个
+//        include(dependency('org.apache.poi:poi-ooxml:5.0.0'))
+    }
+}
+
+
+compileJava {
+    sourceCompatibility = "8"
+    targetCompatibility = "8"
+}

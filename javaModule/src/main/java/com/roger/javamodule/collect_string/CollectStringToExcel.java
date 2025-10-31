@@ -26,7 +26,7 @@ public class CollectStringToExcel {
 //    private static String ROOT_FILE_PATH = "D:\\Work\\cv-media-mobile-v2\\m_account\\src\\main";
 
     //    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\Live资源文件\\Live资源文件调整\\Live资源文件调整\\step2\\live_stb";
-    private static String SAVE_FILE_PATH = "D:\\Program Files\\Lark\\新品牌vod\\Live翻译";
+    private static String SAVE_FILE_PATH = "C:\\Users\\admin\\Desktop\\test\\test";
 
     public static void main(String[] args) {
         System.out.println("start traverse");
