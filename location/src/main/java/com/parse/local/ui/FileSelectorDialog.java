@@ -5,11 +5,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,7 +25,6 @@ public class FileSelectorDialog extends JFrame {
     private JTextField inputField3;
     private JButton selectButton;
     private JButton confirmButton;
-    private JCheckBox checkBox;
     private JLabel statusLabel;
     private File selectedFile;
 
@@ -79,12 +76,8 @@ public class FileSelectorDialog extends JFrame {
         JLabel label2 = new JLabel("支行名填入列(D/E/F):");
         inputField2 = new JTextField();
 
-        JLabel label3 = new JLabel("所在省填入(D/E/F):");
+        JLabel label3 = new JLabel("所在省&市填入(D/E/F):");
         inputField3 = new JTextField();
-
-        // 勾选框部分
-        JLabel checkBoxLabel = new JLabel("编辑源文件（现在没用）:");
-        checkBox = new JCheckBox("是否修改原文件");
 
         // 确认按钮
         confirmButton = new JButton("开始处理");
@@ -102,9 +95,6 @@ public class FileSelectorDialog extends JFrame {
         panel.add(label3);
         panel.add(inputField3);
 
-        panel.add(checkBoxLabel);
-        panel.add(checkBox);
-
         // 空标签占位
         panel.add(new JLabel());
         panel.add(confirmButton);
@@ -119,6 +109,18 @@ public class FileSelectorDialog extends JFrame {
         statusLabel = new JLabel("就绪");
         statusLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         panel.add(statusLabel, BorderLayout.CENTER);
+
+//        // 使用JTextArea代替JLabel，支持多行文本
+//        statusLabel = new JTextArea(3, 1); // 3行，20列
+//        statusLabel.setEditable(false); // 设置为只读
+//        statusLabel.setLineWrap(true); // 自动换行
+//        statusLabel.setWrapStyleWord(true); // 按单词换行
+//        statusLabel.setBackground(panel.getBackground()); // 与面板背景一致
+//
+//        // 设置边框和边距
+//        statusLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+//
+//        panel.setPreferredSize(new Dimension(0, 50)); // 固定高度100像素
 
         return panel;
     }
@@ -186,7 +188,7 @@ public class FileSelectorDialog extends JFrame {
 
         // 获取输入框内容
         String input1 = inputField1.getText().trim();
-        String input2 = inputField2.getText().trim();
+        String blankName = inputField2.getText().trim();
         String province = inputField3.getText().trim();
 
         // 验证必填字段（示例）
@@ -195,11 +197,8 @@ public class FileSelectorDialog extends JFrame {
             return;
         }
 
-        // 获取复选框状态
-        boolean isChecked = checkBox.isSelected();
-
         // 显示确认对话框
-        String message = buildConfirmationMessage(input1, input2, province, isChecked);
+        String message = buildConfirmationMessage(input1, blankName, province);
 
         int confirmResult = JOptionPane.showConfirmDialog(
                 this,
@@ -211,14 +210,14 @@ public class FileSelectorDialog extends JFrame {
 
         if (confirmResult == JOptionPane.YES_OPTION) {
             // 用户点击了"是"，在后台线程中执行处理逻辑
-            startBackgroundProcessing(input1, input2, province, isChecked);
+            startBackgroundProcessing(input1, blankName, province);
         } else {
             // 用户点击了"否"或关闭对话框
             updateStatus("用户取消操作");
         }
     }
 
-    private void startBackgroundProcessing(final String input1, final String input2, final String province, final boolean advancedMode) {
+    private void startBackgroundProcessing(final String input1, final String blankName, final String province) {
         // 禁用按钮，防止重复操作
         setControlsEnabled(false);
         updateStatus("开始处理数据...");
@@ -227,21 +226,21 @@ public class FileSelectorDialog extends JFrame {
         final SwingWorker<Boolean, String> worker = new SwingWorker<Boolean, String>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                try {
-                    ParseExcelBlank.processExcelFile(selectedFile, input1, input2, province, advancedMode, new ParseExcelBlank.StatusCallback() {
-                        @Override
-                        public void updateStatus(String status) {
-                            System.out.println(status);
-                            publish(status);
-                        }
-                    });
 
-                    return true;
+                ParseExcelBlank.processExcelFile(selectedFile, input1, blankName, province, new ParseExcelBlank.StatusCallback() {
+                    @Override
+                    public void updateStatus(String status) {
+                        System.out.println(status);
+                        publish(status);
+                    }
 
-                } catch (Exception e) {
-                    publish("处理失败: " + e.getMessage());
-                    return false;
-                }
+                    @Override
+                    public void updateError(String status) {
+                        System.out.println("处理失败: " + status);
+                        publish("处理失败: " + status);
+                    }
+                });
+                return true;
             }
 
             @Override
@@ -255,19 +254,19 @@ public class FileSelectorDialog extends JFrame {
 
             @Override
             protected void done() {
-                try {
-                    Boolean success = get();
-                    if (success) {
-                        showSuccess("数据处理完成！\n文件: " + selectedFile.getName());
-                    } else {
-                        showError("处理过程中出现错误");
-                    }
-                } catch (InterruptedException | ExecutionException e) {
-                    showError("处理异常: " + e.getMessage());
-                } finally {
-                    // 恢复界面状态
-                    setControlsEnabled(true);
-                }
+//                try {
+//                    Boolean success = get();
+//                    if (success) {
+//                        showSuccess("数据处理完成！\n文件: " + selectedFile.getName());
+//                    } else {
+//                        showError("处理过程中出现错误");
+//                    }
+//                } catch (InterruptedException | ExecutionException e) {
+//                    showError("处理异常: " + e.getMessage());
+//                } finally {
+                // 恢复界面状态
+                setControlsEnabled(true);
+//                }
             }
         };
 
@@ -280,7 +279,6 @@ public class FileSelectorDialog extends JFrame {
         inputField1.setEnabled(enabled);
         inputField2.setEnabled(enabled);
         inputField3.setEnabled(enabled);
-        checkBox.setEnabled(enabled);
 
         if (enabled) {
             confirmButton.setText("开始处理");
@@ -299,14 +297,13 @@ public class FileSelectorDialog extends JFrame {
         });
     }
 
-    private String buildConfirmationMessage(String input1, String input2, String province, boolean isChecked) {
+    private String buildConfirmationMessage(String input1, String blankName, String province) {
         StringBuilder message = new StringBuilder();
         message.append("请确认以下信息：\n\n");
         message.append("Excel文件: ").append(selectedFile.getName()).append("\n");
         message.append("解析列: ").append(input1).append("\n");
-        message.append("银行名保存到: ").append(input2).append("\n");
+        message.append("银行名保存到: ").append(blankName).append("\n");
         message.append("所在省保存到: ").append(province).append("\n");
-        message.append("编辑原文件: ").append(isChecked ? "启用" : "禁用").append("\n\n");
         message.append("处理过程可能需要一些时间，是否继续？");
 
         return message.toString();

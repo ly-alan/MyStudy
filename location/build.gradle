@@ -47,7 +47,7 @@ shadowJar {
         attributes 'Main-Class': 'com.parse.local.Location'
     }
     baseName = '地址解析'
-    version = 'V1.0.0'
+    version = 'V1.0.1'
     dependencies {
 //        //需要依赖的第三方lib，第三方lib依赖的也要一起加进去
 //        include(dependency('org.apache.poi:poi:5.0.0'))

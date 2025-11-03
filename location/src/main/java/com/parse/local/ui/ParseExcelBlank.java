@@ -28,7 +28,6 @@ public class ParseExcelBlank {
      * @param input          带解析参数所在列
      * @param blankName      输出参数所在列
      * @param province       输入参数3
-     * @param advancedMode   是否编辑原文件
      * @param statusCallback 状态回调接口
      * @return 处理是否成功
      */
@@ -36,11 +35,10 @@ public class ParseExcelBlank {
                                            String input,
                                            String blankName,
                                            String province,
-                                           boolean advancedMode,
                                            StatusCallback statusCallback) {
 
         Workbook workbook = null;
-
+        OutputStream fos = null;
         try {
             statusCallback.updateStatus("正在打开Excel文件...");
             // 判断文件类型并创建Workbook
@@ -64,12 +62,10 @@ public class ParseExcelBlank {
                 if (originalData == null || originalData.trim().isEmpty()) {
                     continue;
                 }
-                if (!originalData.contains("支行")) {
-                    //需要查询支行
-                    continue;
+                if (originalData.contains("支行") || originalData.contains("分行")) {
+                    //保存需要解析的行
+                    processList.add(new ProcessData(i, row, originalData));
                 }
-                //保存需要解析的行
-                processList.add(new ProcessData(i, row, originalData));
             }
             // 第二步：处理数据
             int processedRows = 0;
@@ -78,12 +74,20 @@ public class ParseExcelBlank {
                 // 解析地址
                 AmapPoi result = performTimeConsumingOperation(data.originalData);
                 if (result == null || Utils.isEmpty(result.province)) {
-                    statusCallback.updateStatus("解析<" + data.originalData + ">失败");
-                    continue;
+                    for (int retry = 3; retry > 0; retry--) {
+                        statusCallback.updateStatus("解析<" + data.originalData + ">失败,重试");
+                        result = performTimeConsumingOperation(data.originalData);
+                        if (result != null && !Utils.isEmpty(result.province)) {
+                            break;
+                        }
+                    }
+                    if (result == null || Utils.isEmpty(result.province)) {
+                        continue;
+                    }
                 }
                 // 更新状态
-                statusCallback.updateStatus("解析<" + data.originalData + ">成功 正在写入");
-                if (Utils.isEmpty(blankName)) {
+                statusCallback.updateStatus("解析<" + data.originalData + ">成功 正在写入: " + result.getProvince());
+                if (!Utils.isEmpty(blankName)) {
                     // 创建或获取D列单元格（第3列）
                     Cell cellD = data.row.getCell(ExcelUtils.columnLetterToIndex(blankName));
                     if (cellD == null) {
@@ -92,13 +96,13 @@ public class ParseExcelBlank {
                     //返回的name包含了支行
                     cellD.setCellValue(getBlankName(result.getName()));
                 }
-                if (Utils.isEmpty(blankName)) {
+                if (!Utils.isEmpty(province)) {
                     // 创建或获取E列单元格（第4列）
                     Cell cellE = data.row.getCell(ExcelUtils.columnLetterToIndex(province));
                     if (cellE == null) {
                         cellE = data.row.createCell(ExcelUtils.columnLetterToIndex(province));
                     }
-                    cellE.setCellValue(result.getProvince());
+                    cellE.setCellValue(result.getProvince() + "&" + result.getCity());
                 }
 
                 processedRows++;
@@ -107,14 +111,14 @@ public class ParseExcelBlank {
             statusCallback.updateStatus("正在保存文件...");
 
             // 保存文件（在原文件基础上保存）
-            OutputStream fos = new FileOutputStream(excelFile);
+            fos = new FileOutputStream(excelFile);
             workbook.write(fos);
             workbook.close();
             statusCallback.updateStatus("处理完成！共成功处理 " + processedRows + " 行数据");
             return true;
 
         } catch (Exception e) {
-            statusCallback.updateStatus("处理出现异常: " + e.getMessage());
+            statusCallback.updateError("处理出现异常: " + e.getMessage());
             e.printStackTrace();
             return false;
         } finally {
@@ -122,6 +126,9 @@ public class ParseExcelBlank {
             try {
                 if (workbook != null) {
                     workbook.close();
+                }
+                if (fos != null) {
+                    fos.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -197,5 +204,7 @@ public class ParseExcelBlank {
      */
     public interface StatusCallback {
         void updateStatus(String status);
+
+        void updateError(String status);
     }
 }

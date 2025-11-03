@@ -33,6 +33,7 @@ public class BankBranchLocator {
                     }
                 }
             }
+            Thread.sleep(501);
         } catch (Exception e) {
             e.printStackTrace();
         }
