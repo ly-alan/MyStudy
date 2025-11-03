@@ -2,6 +2,8 @@ package com.parse.local.gaode;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class AmapPoi {
     @SerializedName("name")
     public String name;//搜索出的名称,es:招商银行(深圳深纺支行)
@@ -73,5 +75,18 @@ public class AmapPoi {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        AmapPoi that = (AmapPoi) obj;
+        return Objects.equals(name, that.name)
+                && Objects.equals(type, that.type)
+                && Objects.equals(province, that.province)
+                && Objects.equals(city, that.city)
+                && Objects.equals(district, that.district)
+                && Objects.equals(address, that.address);
     }
 }

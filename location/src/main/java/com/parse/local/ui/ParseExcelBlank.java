@@ -74,7 +74,7 @@ public class ParseExcelBlank {
                 // 解析地址
                 AmapPoi result = performTimeConsumingOperation(data.originalData);
                 if (result == null || Utils.isEmpty(result.province)) {
-                    for (int retry = 3; retry > 0; retry--) {
+                    for (int retry = 2; retry > 0; retry--) {
                         statusCallback.updateStatus("解析<" + data.originalData + ">失败,重试");
                         result = performTimeConsumingOperation(data.originalData);
                         if (result != null && !Utils.isEmpty(result.province)) {
@@ -102,7 +102,12 @@ public class ParseExcelBlank {
                     if (cellE == null) {
                         cellE = data.row.createCell(ExcelUtils.columnLetterToIndex(province));
                     }
-                    cellE.setCellValue(result.getProvince() + "&" + result.getCity());
+                    if (result.getProvince().equals(result.getCity())) {
+                        //直辖市
+                        cellE.setCellValue(result.getProvince());
+                    } else {
+                        cellE.setCellValue(result.getProvince() + result.getCity());
+                    }
                 }
 
                 processedRows++;
@@ -185,11 +190,20 @@ public class ParseExcelBlank {
         if (Utils.isEmpty(name)) {
             return "";
         }
-        String[] list = name.trim().split("\\(");
-        if (list.length > 0) {
-            return list[0];
+        String result = name;
+        if (name.trim().contains("(")) {
+            String[] list = name.trim().split("\\(");
+            if (list.length > 0) {
+                result = list[0];
+            }
         }
-        return name;
+        if (result.trim().contains("24")) {
+            String[] list = result.trim().split("24");
+            if (list.length > 0) {
+                result = list[0];
+            }
+        }
+        return result;
     }
 
     /**
